@@ -38,15 +38,29 @@ function updateCurData ($xml, $id)
     //Checks if there are differences between the data in the xml file and the data in the currency feed.
     //Using USD as the base currency, hence why USD is 1. 
     $latestURL = "https://openexchangerates.org/api/latest.json?app_id=" . $id;
-    $latestData = json_decode(file_get_contents($latestURL), true);
-    print_r($latestData);
-    foreach ($xml->rates->cur->rate as $cur) 
+    $latestData = json_decode(file_get_contents($latestURL));
+    //print_r($latestData);
+    
+    foreach ($xml->rates->cur as $currency) 
     {
-        echo $cur;
+        //echo $currency->name;
+        $name = (string)$currency->name;
+        $rate = (string)$currency->rate;
+        //echo $currency->rate;
+        //echo $latestData->rates->$name;
+
+        if($name == $currency->name)
+        {
+            $currency->rate = $latestData->rates->$name;
+        }
+        
     }
+
+    file_put_contents('curData.xml', $xml->asxml());
 }
 
-//echo $xml->rates->USD;
+
+
 //header('Content-Type: text/xml');
 //echo $xml;
 updateCurData($xml, $id);

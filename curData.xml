@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies>
-    <updated time="04:56" date="30/09/18"/>
+    <updated time="06:53" date="30/09/18"/>
     <rates>
         <cur>
             <name>USD</name>
             <rate>1</rate>
         </cur>
-            <name>GBP</name>
-            <rate>0</rate>
         <cur>
+            <name>GBP</name>
+            <rate>0.76746</rate>
+        </cur>
+        <cur>
+            <name>CAD</name>
+            <rate>1.291756</rate>
         </cur>
     </rates>
 </currencies>
