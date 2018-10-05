@@ -1,9 +1,10 @@
 <?php
 //Author: Gregory Jones
-//This script will be run once every few hours, it will check the curData.xml file against the infomation pulled from openexchangerates.
+//This script will be run once every few hours, data is pulled from http://www.openrates.io/. 
 //If there is a difference between the data then the script will update curData with the newer data. 
 
-$id = '08c94e1539cd46c69ef98a7a2a94ca7a';
+//This is the base currency of the api. 
+$base = 'GBP';
 
 if (file_exists('curData.xml'))
 {
@@ -33,13 +34,13 @@ function updateCurDataAcessed ($xml)
     }
 }
 
-function updateCurData ($xml, $id)
+function updateCurData ($xml, $base)
 {
     //Checks if there are differences between the data in the xml file and the data in the currency feed.
-    //Using USD as the base currency, hence why USD is 1. 
-    $latestURL = "https://openexchangerates.org/api/latest.json?app_id=" . $id;
+    $latestURL = "http://api.openrates.io/latest" . '?base=' . $base;
     $latestData = json_decode(file_get_contents($latestURL));
-    //print_r($latestData);
+    echo $latestURL;
+    print_r($latestData);
     
     foreach ($xml->rates->cur as $currency) 
     {
@@ -48,11 +49,17 @@ function updateCurData ($xml, $id)
         $rate = (string)$currency->rate;
         //echo $currency->rate;
         //echo $latestData->rates->$name;
-
-        if($name == $currency->name)
+        
+        if($currency->name == $base)
+        {
+            //Always set the base currency to 1.
+            $currency->rate = 1;
+        }
+        elseif($name == $currency->name)
         {
             $currency->rate = $latestData->rates->$name;
         }
+        
         
     }
 
@@ -63,6 +70,6 @@ function updateCurData ($xml, $id)
 
 //header('Content-Type: text/xml');
 //echo $xml;
-updateCurData($xml, $id);
+updateCurData($xml, $base);
 updateCurDataAcessed($xml);
 ?>
