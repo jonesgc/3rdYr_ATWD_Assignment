@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies>
-    <updated time="06:13" date="05/10/18"/>
+    <updated time="06:18" date="05/10/18"/>
     <rates>
         <cur>
             <name>USD</name>
@@ -15,6 +15,111 @@
         <cur>
             <name>CAD</name>
             <rate>1.7076</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>AUD</name>
+            <rate>1.7995</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>BRL</name>
+            <rate>5.3347</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>CHF</name>
+            <rate>1.2552</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>CNY</name>
+            <rate>8.8452</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>DKK</name>
+            <rate>8.3015</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>EUR</name>
+            <rate>1.1133</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>HKD</name>
+            <rate>10.167</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>HUF</name>
+            <rate>363.48</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>INR</name>
+            <rate>93.202</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>JPY</name>
+            <rate>144.23</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>MXN</name>
+            <rate>24.899</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>MYR</name>
+            <rate>5.3571</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>NOK</name>
+            <rate>10.884</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>NZD</name>
+            <rate>1.9631</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>PHP</name>
+            <rate>69.683</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>RUB</name>
+            <rate>88.59</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>SEK</name>
+            <rate>11.791</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>SGD</name>
+            <rate>1.7813</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>THB</name>
+            <rate>42.45</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>TRY</name>
+            <rate>8.4924</rate>
+            <loc/>
+        </cur>
+        <cur>
+            <name>ZAR</name>
+            <rate>19.842</rate>
             <loc/>
         </cur>
     </rates>
