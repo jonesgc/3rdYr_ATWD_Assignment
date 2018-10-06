@@ -1,6 +1,7 @@
 <?php
 
 $method = $_SERVER['REQUEST_METHOD'];
+$query = $_SERVER['QUERY_STRING'];
 
 //Get the exchange rates xml file for use in conversions.
 if (file_exists('curData.xml'))
@@ -10,6 +11,19 @@ if (file_exists('curData.xml'))
 else
 {
     echo "Cant find currency data file.";
+}
+
+
+function methodController($method, $query)
+{
+    //Swtitch on the method in the request then call the corisponding function.
+    switch ($method)
+    {
+        case 'GET':echo $query;break;
+        case 'PUT':break;
+        case 'POST':break;
+        case 'DELETE':break;
+    }
 }
 
 
@@ -46,5 +60,6 @@ $base = 'GBP';
 $origin = 'DKK';
 $amount = 1;
 $target = 'JPY';
-echo convertCur($base, $origin, $target, $amount,$xml);
+//echo convertCur($base, $origin, $target, $amount,$xml);
+methodController($method, $query);
 ?>
