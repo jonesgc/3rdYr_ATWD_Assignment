@@ -14,12 +14,13 @@ else
 }
 
 
+//Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query)
 {
-    //Swtitch on the method in the request then call the corisponding function.
+    
     switch ($method)
     {
-        case 'GET':echo $query;break;
+        case 'GET': respondGET($query);break;
         case 'PUT':break;
         case 'POST':break;
         case 'DELETE':break;
@@ -27,10 +28,11 @@ function methodController($method, $query)
 }
 
 
+//This function converts between the origin currency and the target currency using the base currency as an intermedary.
+//Current solution O-->B-->T
 function convertCur($base, $origin, $target, $amount, $xml)
 {
-    //This function converts between the origin currency and the target currency using the base currency as an intermedary.
-    //Current solution O-->B-->T
+    
     
     //Get the rates for origin and target vs the base currency.
     foreach ($xml->rates->cur as $currency) 
@@ -56,6 +58,15 @@ function convertCur($base, $origin, $target, $amount, $xml)
 
     return $result;
 }
+
+//Respond to a GET request.
+//Expected response type is XML.
+function respondGET ($query)
+{
+    print_r(explode('&', $query));
+    echo $query;
+}
+
 $base = 'GBP';
 $origin = 'DKK';
 $amount = 1;
