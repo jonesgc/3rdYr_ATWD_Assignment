@@ -1,20 +1,24 @@
-<html>
+<html>  
     <head>
         <title>Client Example</title>
         <meta charset="utf-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="client.js"></script>
+        <script type="text/javascript" src="client.js"></script>
     </head>
     <body>
         <h1>Client Page</h1>
         <div id = "input">
             <label id="actionLabel">Action</label>
-            <input id="action" type="radio" name="actionGroup" value="GET">GET
+            <input id="action" type="radio" name="actionGroup" value="GET" checked="checked">GET
             <input id="action" type="radio" name="actionGroup" value="PUT">PUT
             <input id="action" type="radio" name="actionGroup" value="POST">POST
             <input id="action" type="radio" name="actionGroup" value="DELETE">DELETE<br>
-            <label id="labelRequest">Request</label>
-            <input id="request" type="text">
+            <label id="labelFrom">From</label>
+            <input id="from" type="text">
+            <label id="labelTo">To</label>
+            <input id="to" type="text">
+            <label id="labelAmount">Amount</label>
+            <input id="amount" type="text">
             <button id="submitRequest" onclick="query()">Submit</button>
         </div>
         <div id = "response">

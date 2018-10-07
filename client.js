@@ -6,26 +6,33 @@ $(document).ready(function()
 function query()
 {
     var baseurl = "http://localhost/atwd/atwd_assignment/atwdAPI.php?";
-    var action = 
+    var action = $('input[name=actionGroup]:checked', '#input').val();
     //Check if there is something in the text box for the request
-    if($("#request").val())
+    if($("#action").val())
     {
-      var request = $("#request").val();
+      var from = $('#from').val();
+      var to = $('#to').val();
+      var amount = $('#amount').val();
     }
     else
     {
-        //Nothing in the text box. Error should go in here.
+        //Handle the error and send message to the user.
+        
     }
     
     $.ajax(
         {
-            url: request,
-
+            url: baseurl + from + to + amount,
+            type : action,
+            success: function(data)
+            {
+                console.log(data);
+            },
             error: function()
             {
                 $("#request").append("Failed AJAX call.");
             },
             
-            type = action
+            
         });
 };
