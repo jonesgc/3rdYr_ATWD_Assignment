@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conv>
+    <at></at>
+    <from>
+        <code></code>
+        <rate></rate>
+        <loc>
+        </loc>
+        <amnt></amnt>
+    </from>
+    <to>
+        <code></code>
+        <curr></curr>
+        <loc></loc>
+        <amnt></amnt>
+    </to>
+</conv>
