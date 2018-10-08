@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies>
-    <updated time="07:44" date="05/10/18"/>
+    <updated>
+        <time>07:31</time>
+        <date>08/10/18</date>
+    </updated>
     <rates>
         <cur>
             <name>USD</name>

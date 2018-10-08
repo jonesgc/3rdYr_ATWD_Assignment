@@ -60,31 +60,9 @@ function convertCur($base, $origin, $target, $amount, $xml)
     //Perform the conversion, using the base currency as a "stepping stone"
     $newAmount = ($amount * $originVal)/$targetVal;
 
-    //Find the get response XML template.
-    if (file_exists('curData.xml')) 
-    {
-        $result = simplexml_load_file('getRes.xml');
+    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
-        $dt = date('d/m/y\ m:h');
-        $result->conv->at = $dt;
-
-        //Origin or from return values input into response xml.
-        $result->conv->from->code = $origin;
-        $result->conv->from->rate = $originVal;
-        //Missing location data!
-        $result->conv->from->amnt = $amount;
-        
-        //Target or to values input into response xml.
-        $result->conv->to->code = $target;
-        $result->conv->to->amnt = $newAmount;
-        return $result;
-    }
-    else
-    {
-        //Error
-        echo "Cant find get response template";
-        return "Error";
-    }
+    return $result;
 }
 
 //Respond to a GET request.
@@ -97,7 +75,53 @@ function respondGET ($query, $base, $xml)
     $amount = $params[2];
     $type = $params[3];
     $result = convertCur($base, $origin, $target, $amount, $xml);
-    echo $result->asXML();
+
+    if($type == 'XML')
+    {
+        //Find the get response XML template.
+        if (file_exists('curData.xml')) 
+        {
+            $res = simplexml_load_file('getResXML.xml');
+
+            $res->conv->at = $xml->updated->date . ' ' . $xml->updated->time;
+
+            //Origin or from return values input into response xml.
+            $res->conv->from->code = $origin;
+            $res->conv->from->rate = $result[1];
+            //Missing location data!
+            $res->conv->from->amnt = $amount;
+        
+            //Target or to values input into response xml.
+            $res->conv->to->code = $target;
+            $res->conv->to->amnt = $result[5];
+
+            echo $res->asxml();
+        }
+        else
+        {
+            //Error
+            echo "Cant find get response template";
+        }
+    }
+    elseif($type == 'JSON')
+    {
+        $res = json_decode(file_get_contents('getResJSON.json'), true);
+    
+        $res['conv']['at'] = $xml->updated->date . ' ' . $xml->updated->time;
+        $res['conv']['rate'] = $result[1];
+
+        //Input origin or from response values into JSON.
+        $res['conv']['from']['code'] = $origin;
+        //Need currency name.
+        //Need location data.
+        $res['conv']['from']['amnt' ]= $amount;
+
+        //Input target or to response values into JSON.
+        $res['conv']['to']['code'] = $target;
+        $res['conv']['to']['amnt'] = $result[5];
+        print_r($res);
+    }
+    
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);

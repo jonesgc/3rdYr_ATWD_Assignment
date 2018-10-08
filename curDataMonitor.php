@@ -18,17 +18,17 @@ else{
 function updateCurDataAcessed ($xml)
 {
     //Update time + date accessed.
-    $time = $xml->updated['time'];
-    $date = $xml->updated['date'];
+    $time = $xml->updated->time;
+    $date = $xml->updated->date;
 
     //Get current server date + time.
     $servDate = date("d/m/y");
     $servTime = date("h:i");
 
-    if($time != $servTime)
+    if($date != $servDate)
     {
-        $xml->updated['time'] = $servTime;
-        $xml->updated['date'] = $servDate;
+        $xml->updated->time = $servTime;
+        $xml->updated->date = $servDate;
         //echo $time->asxml();
         file_put_contents('curData.xml', $xml->asxml());
     }

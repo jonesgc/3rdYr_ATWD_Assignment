@@ -1,0 +1,18 @@
+{"conv":{
+        "at":0,
+        "rate":0,
+        "from":{
+            "code":0,
+            "curr":0,
+            "loc":0,
+            "amnt":0
+        },
+        "to":{
+            "code":0,
+            "curr":0,
+            "loc":0,
+            "amnt":0
+        }
+    }
+
+}
