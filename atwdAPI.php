@@ -83,17 +83,17 @@ function respondGET ($query, $base, $xml)
         {
             $res = simplexml_load_file('getResXML.xml');
 
-            $res->conv->at = $xml->updated->date . ' ' . $xml->updated->time;
+            $res->at = $xml->updated->date . ' ' . $xml->updated->time;
 
             //Origin or from return values input into response xml.
-            $res->conv->from->code = $origin;
-            $res->conv->from->rate = $result[1];
+            $res->from->code = $origin;
+            $res->from->rate = $result[1];
             //Missing location data!
-            $res->conv->from->amnt = $amount;
+            $res->from->amnt = $amount;
         
             //Target or to values input into response xml.
-            $res->conv->to->code = $target;
-            $res->conv->to->amnt = $result[5];
+            $res->to->code = $target;
+            $res->to->amnt = $result[5];
 
             echo $res->asxml();
         }

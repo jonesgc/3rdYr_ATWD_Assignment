@@ -5,7 +5,7 @@ $(document).ready(function()
 
 function query()
 {
-    var baseurl = "http://localhost/atwd/atwd_assignment/atwdAPI.php?";
+    var baseurl = "atwdAPI.php?";
     var action = $('input[name=actionGroup]:checked', '#input').val();
 
     //If there is an action selected (GET should be default) commence with URL building.
