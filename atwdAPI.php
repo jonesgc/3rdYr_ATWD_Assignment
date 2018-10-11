@@ -125,14 +125,23 @@ function respondGET ($query, $base, $xml)
     }
 
 }
+
 function respondPUT($method, $xml)
 {
   	//Extract the put data from the php stdin stream.
-	$put = fopen('php://input', 'r');
-	$fp = fopen('test.txt', 'w');
-  	//Read the data from the putfile.
-  	while($data = fread($put, 1024))
-  		fwrite($fp, $data);
+	$putdata = json_decode(file_get_contents('php://input', true), true);
+	echo $putdata;
+	$code = $putdata['code'];
+	$rate = $putdata['rate'];
+
+	//Put the new value in the XML file.
+	$rates = $xml->rates;
+	$cur = $rates->addChild('cur');
+	$name = $cur->addChild('name');
+	$name = $code;
+
+	file_put_contents('curData.xml', $xml->asxml());
+
   	echo "Putting stuff in the file.";
 }
 

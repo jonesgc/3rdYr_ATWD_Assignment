@@ -48,8 +48,16 @@ function query()
     {
       if (this.readyState == 4 && this.status == 200)
       {
-        console.log(this.responseText);
-        document.getElementById('responseTextArea').value = this.responseText;
+		  if(action === 'GET')
+		  {
+			  console.log(this.responseText.toString());
+	          document.getElementById('responseTextArea').value = this.responseText;
+		  }
+		  else if (action === 'PUT')
+		  {
+			  console.log(this.responseText);
+		  }
+
       }
     };
     req.open(action, url , true);
