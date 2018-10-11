@@ -1,6 +1,6 @@
 <?php
 //Author: Gregory Jones
-//This script will be run once every few hours, data is pulled from http://www.openrates.io/.
+//This script will be run once every few hours, data is pulled from http://www.openrates.io/. this needs to be changed to https://ratesapi.io/documentation/
 //If there is a difference between the data then the script will update curData with the newer data.
 
 //This is the base currency of the api.

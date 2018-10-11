@@ -6,7 +6,6 @@ function query()
     //If there is an action selected (GET should be default) commence with URL building.
     if(action)
     {
-      console.log(action);
         switch (action)
         {
             case 'GET':
@@ -18,6 +17,13 @@ function query()
                 break;
 
             case 'PUT':
+				var obj = {"code":"", "rate":""};
+                var code = document.getElementById('from').value;
+                var amount = document.getElementById('amount').value;
+				obj["code"] = code;
+				obj["rate"] = amount;
+				var param = JSON.stringify(obj);
+                var url = "atwdAPI.php";
                 break;
 
             case 'POST':
@@ -47,5 +53,18 @@ function query()
       }
     };
     req.open(action, url , true);
-    req.send();
+	if(action === 'PUT')
+	{
+		req.send(param);
+	}
+	else
+	{
+		req.send();
+	}
+
+};
+
+function putInput()
+{
+
 };

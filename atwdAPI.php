@@ -22,7 +22,7 @@ function methodController($method, $query, $base, $xml)
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
-        case 'PUT':break;
+        case 'PUT': respondPUT($method, $xml);break;
         case 'POST':break;
         case 'DELETE':break;
     }
@@ -124,6 +124,16 @@ function respondGET ($query, $base, $xml)
         echo $res;
     }
 
+}
+function respondPUT($method, $xml)
+{
+  	//Extract the put data from the php stdin stream.
+	$put = fopen('php://input', 'r');
+	$fp = fopen('test.txt', 'w');
+  	//Read the data from the putfile.
+  	while($data = fread($put, 1024))
+  		fwrite($fp, $data);
+  	echo "Putting stuff in the file.";
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);
