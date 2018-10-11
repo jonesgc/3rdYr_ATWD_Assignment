@@ -18,7 +18,7 @@ else
 //Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query, $base, $xml)
 {
-    
+
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
@@ -33,16 +33,16 @@ function methodController($method, $query, $base, $xml)
 //Current solution O-->B-->T
 function convertCur($base, $origin, $target, $amount, $xml)
 {
-    
+
     $originVal = 0;
     $targetVal = 0;
-    
+
     //Get the rates for origin and target vs the base currency.
-    foreach ($xml->rates->cur as $currency) 
+    foreach ($xml->rates->cur as $currency)
     {
         $name = (string)$currency->name;
         $rate = (string)$currency->rate;
-        
+
         if($name == $base)
         {
             //Cannot alter the base currency in this function.
@@ -79,7 +79,7 @@ function respondGET ($query, $base, $xml)
     if($type == 'XML')
     {
         //Find the get response XML template.
-        if (file_exists('curData.xml')) 
+        if (file_exists('curData.xml'))
         {
             $res = simplexml_load_file('getResXML.xml');
 
@@ -90,7 +90,7 @@ function respondGET ($query, $base, $xml)
             $res->from->rate = $result[1];
             //Missing location data!
             $res->from->amnt = $amount;
-        
+
             //Target or to values input into response xml.
             $res->to->code = $target;
             $res->to->amnt = $result[5];
@@ -106,7 +106,7 @@ function respondGET ($query, $base, $xml)
     elseif($type == 'JSON')
     {
         $res = json_decode(file_get_contents('getResJSON.json'), true);
-    
+
         $res['conv']['at'] = $xml->updated->date . ' ' . $xml->updated->time;
         $res['conv']['rate'] = $result[1];
 
@@ -119,9 +119,11 @@ function respondGET ($query, $base, $xml)
         //Input target or to response values into JSON.
         $res['conv']['to']['code'] = $target;
         $res['conv']['to']['amnt'] = $result[5];
-        print_r($res);
+
+        $res = json_encode($res);
+        echo $res;
     }
-    
+
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);

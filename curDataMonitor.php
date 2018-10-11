@@ -1,9 +1,9 @@
 <?php
 //Author: Gregory Jones
-//This script will be run once every few hours, data is pulled from http://www.openrates.io/. 
-//If there is a difference between the data then the script will update curData with the newer data. 
+//This script will be run once every few hours, data is pulled from http://www.openrates.io/.
+//If there is a difference between the data then the script will update curData with the newer data.
 
-//This is the base currency of the api. 
+//This is the base currency of the api.
 $base = 'GBP';
 
 if (file_exists('curData.xml'))
@@ -41,15 +41,15 @@ function updateCurData ($xml, $base)
     $latestData = json_decode(file_get_contents($latestURL));
     echo $latestURL;
     print_r($latestData);
-    
-    foreach ($xml->rates->cur as $currency) 
+
+    foreach ($xml->rates->cur as $currency)
     {
         //echo $currency->name;
         $name = (string)$currency->name;
         $rate = (string)$currency->rate;
         //echo $currency->rate;
         //echo $latestData->rates->$name;
-        
+
         if($currency->name == $base)
         {
             //Always set the base currency to 1.
@@ -59,8 +59,8 @@ function updateCurData ($xml, $base)
         {
             $currency->rate = $latestData->rates->$name;
         }
-        
-        
+
+
     }
 
     file_put_contents('curData.xml', $xml->asxml());

@@ -1,23 +1,19 @@
-$(document).ready(function()
-{
-    
-});
-
 function query()
 {
     var baseurl = "atwdAPI.php?";
-    var action = $('input[name=actionGroup]:checked', '#input').val();
-
+    var action =  document.querySelector('input[name=actionGroup]:checked').value;
+    console.log(action);
     //If there is an action selected (GET should be default) commence with URL building.
-    if($("#action").val())
+    if(action)
     {
-        switch (action) 
+      console.log(action);
+        switch (action)
         {
             case 'GET':
-                var from = $('#from').val();
-                var to = $('#to').val();
-                var amount = $('#amount').val();
-                var type = $('input[name=typeGroup]:checked', '#input').val();
+                var from = document.getElementById('from').value;
+                var to = document.getElementById('to').value;
+                var amount = document.getElementById('amount').value
+                var type = document.querySelector('input[name=typeGroup]:checked').value;
                 var url = baseurl + from + "&" + to + "&" + amount + "&" + type;
                 break;
 
@@ -39,20 +35,17 @@ function query()
     else
     {
         //Handle the error and send message to the user.
-        
+
     }
-    
-    $.ajax(
-        {
-            url: url,
-            type : action,
-            success: function(data) 
-            {
-                console.log(data);
-            },
-            error: function()
-            {
-                $("#request").append("Failed AJAX call.");
-            },
-        });
+    var req = new XMLHttpRequest();
+    req.onreadystatechange = function()
+    {
+      if (this.readyState == 4 && this.status == 200)
+      {
+        console.log(this.responseText);
+        document.getElementById('responseTextArea').value = this.responseText;
+      }
+    };
+    req.open(action, url , true);
+    req.send();
 };
