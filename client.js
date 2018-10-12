@@ -72,7 +72,24 @@ function query()
 
 };
 
-function putInput()
+function inputControl()
 {
-
+    //This function executes if the put attribute is clicked.
+    var radio  = document.querySelector('input[name=actionGroup]:checked').value;
+    console.log(radio);
+    
+    switch (radio) 
+    {
+        case 'GET':
+            document.getElementById('putInput').style.visibility = 'hidden';
+            document.getElementById('getInput').style.visibility = 'visible';
+            break;
+        case 'PUT':
+            document.getElementById('putInput').style.visibility = 'visible';
+            document.getElementById('getInput').style.visibility = 'hidden';
+            break;
+        default:
+            break;
+    }
+    
 };

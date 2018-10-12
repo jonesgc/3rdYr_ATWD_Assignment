@@ -6,12 +6,14 @@
     </head>
     <body>
         <h1>Client Page</h1>
-        <div id = "input">
+        <div id="radioInput">
             <label id="actionLabel">Action</label>
-            <input id="actionGET" type="radio" name="actionGroup" value="GET" checked="checked">GET
-            <input id="actionPUT" type="radio" name="actionGroup" value="PUT">PUT
+            <input id="actionGET" type="radio" name="actionGroup" value="GET" onclick="inputControl()"checked="checked">GET
+            <input id="actionPUT" type="radio" name="actionGroup" value="PUT" onclick="inputControl()">PUT
             <input id="actionPOST" type="radio" name="actionGroup" value="POST">POST
             <input id="actionDEL" type="radio" name="actionGroup" value="DELETE">DELETE<br>
+        </div>
+        <div id = "getInput">
             <label id="labelFrom">From</label>
             <input id="from" type="text">
             <label id="labelTo">To</label>
@@ -20,6 +22,12 @@
             <input id="amount" type="text"><br>
             <input id="typeXML" type="radio" name="typeGroup" value="XML" checked="checked">XML
             <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON<br>
+        </div>
+        <div id = "putInput">
+            <label id = "curNameLabel">Currency Name</label>
+            <input id = "curName" type = "test">
+        </div> 
+        <div id = "submit">
             <button id="submitRequest" onclick="query()">Submit</button>
         </div>
         <div id = "response">
