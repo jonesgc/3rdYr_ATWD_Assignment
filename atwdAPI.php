@@ -140,9 +140,17 @@ function respondPUT($method, $xml)
 	$name = $cur->addChild('name');
 	$name = $code;
 
-	file_put_contents('curData.xml', $xml->asxml());
+    //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
+    //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure.
+    $dom = new DOMDocument('1.0');
+    $dom->preserveWhiteSpace = false;
+    $dom->formatOutput = true;
+    $dom->loadXML($xml->asXML());
+    
+    $dom->save('curData.xml');
 
-  	echo "Putting stuff in the file.";
+    echo "Putting stuff in the file.";
+    
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);
