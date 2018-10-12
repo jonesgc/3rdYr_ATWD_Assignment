@@ -82,8 +82,8 @@ function respondGET ($query, $base, $xml)
         if (file_exists('curData.xml'))
         {
             $res = simplexml_load_file('getResXML.xml');
-
-            $res->at = $xml->updated->date . ' ' . $xml->updated->time;
+            
+            $res->conv->at = $xml->updated->date . ' ' . $xml->updated->time;
 
             //Origin or from return values input into response xml.
             $res->from->code = $origin;
