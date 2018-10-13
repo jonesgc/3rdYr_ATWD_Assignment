@@ -29,11 +29,14 @@ function query()
                 break;
 
             case 'POST':
+                //Need to be careful when using JSON in post as it causes an extra step to be needed.
+                //Best to create an alternative.
                 var obj = {"code":"", "rate":""};
                 obj["code"] = document.getElementById('postCurCode').value;
                 obj["rate"] = document.getElementById('postRate').value;
                 var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
+                console.log(param);
                 break;
 
             case 'DELETE':

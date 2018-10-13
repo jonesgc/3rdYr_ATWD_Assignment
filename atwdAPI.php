@@ -154,8 +154,10 @@ function respondPUT($xml)
 }
 
 function respondPOST($xml)
-{
-    print_r($_POST);
+{   
+    //This is because of the type of data coming from the client, need to handel this.
+    $postdata = json_decode(file_get_contents('php://input', true), true);
+    print_r($postdata);
 }
 //echo convertCur($base, $origin, $target, $amount,$xml);
 methodController($method, $query, $base, $xml);
