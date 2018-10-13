@@ -17,16 +17,23 @@ function query()
                 break;
 
             case 'PUT':
-				var obj = {"code":"", "rate":""};
-                var code = document.getElementById('from').value;
-                var amount = document.getElementById('amount').value;
-				obj["code"] = code;
-				obj["rate"] = amount;
+				var obj = {"code":"", "fname":"", "rate":"", "countries":""};
+                //var code = document.getElementById('from').value;
+                //var amount = document.getElementById('amount').value;
+                obj["code"] = document.getElementById('putCurCode').value;
+                obj["fname"] = document.getElementById('putFname').value;
+                obj["rate"] = document.getElementById('putRate').value;
+                obj["countries"] = document.getElementById('putCountries').value;
 				var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
 
             case 'POST':
+                var obj = {"code":"", "rate":""};
+                obj["code"] = document.getElementById('postCurCode').value;
+                obj["rate"] = document.getElementById('postRate').value;
+                var param = JSON.stringify(obj);
+                var url = "atwdAPI.php";
                 break;
 
             case 'DELETE':
@@ -56,7 +63,15 @@ function query()
 		  else if (action === 'PUT')
 		  {
 			  console.log(this.responseText);
-		  }
+          }
+          else if (action === 'POST')
+          {
+              console.log(this.responseText);
+          }
+          else if (action === 'DELETE')
+          {
+              console.log(this.responseText);
+          }
 
       }
     };
@@ -64,7 +79,11 @@ function query()
 	if(action === 'PUT')
 	{
 		req.send(param);
-	}
+    }
+    else if(action === 'POST')
+    {
+        req.send(param);
+    }
 	else
 	{
 		req.send();
@@ -75,18 +94,35 @@ function query()
 function inputControl()
 {
     //This function executes if the put attribute is clicked.
+    //Desired visible div is always at the top of each block.
     var radio  = document.querySelector('input[name=actionGroup]:checked').value;
     console.log(radio);
     
     switch (radio) 
     {
         case 'GET':
-            document.getElementById('putInput').style.visibility = 'hidden';
             document.getElementById('getInput').style.visibility = 'visible';
+            document.getElementById('putInput').style.visibility = 'hidden';
+            document.getElementById('postInput').style.visibility = 'hidden';
+            document.getElementById('deleteInput').style.visibility = 'hidden';
             break;
         case 'PUT':
             document.getElementById('putInput').style.visibility = 'visible';
             document.getElementById('getInput').style.visibility = 'hidden';
+            document.getElementById('postInput').style.visibility = 'hidden';
+            document.getElementById('deleteInput').style.visibility = 'hidden';
+            break;
+        case 'POST':
+            document.getElementById('postInput').style.visibility = 'visible';
+            document.getElementById('getInput').style.visibility = 'hidden';
+            document.getElementById('putInput').style.visibility = 'hidden';
+            document.getElementById('deleteInput').style.visibility = 'hidden';
+            break;
+        case 'DELETE':
+            document.getElementById('deleteInput').style.visibility = 'visible';
+            document.getElementById('getInput').style.visibility = 'hidden';
+            document.getElementById('postInput').style.visibility = 'hidden';
+            document.getElementById('putInput').style.visibility = 'hidden';
             break;
         default:
             break;

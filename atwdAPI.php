@@ -22,8 +22,8 @@ function methodController($method, $query, $base, $xml)
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
-        case 'PUT': respondPUT($method, $xml);break;
-        case 'POST':break;
+        case 'PUT': respondPUT($xml);break;
+        case 'POST': respondPOST($xml);break;
         case 'DELETE':break;
     }
 }
@@ -126,7 +126,7 @@ function respondGET ($query, $base, $xml)
 
 }
 
-function respondPUT($method, $xml)
+function respondPUT($xml)
 {
   	//Extract the put data from the php stdin stream.
 	$putdata = json_decode(file_get_contents('php://input', true), true);
@@ -153,6 +153,10 @@ function respondPUT($method, $xml)
     
 }
 
+function respondPOST($xml)
+{
+    print_r($_POST);
+}
 //echo convertCur($base, $origin, $target, $amount,$xml);
 methodController($method, $query, $base, $xml);
 

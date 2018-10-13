@@ -4,14 +4,15 @@
         <meta charset="utf-8">
         <script type="text/javascript" src="client.js"></script>
     </head>
-    <body>
+    <!-- Calling this function on load of the body is required to format the page correctly according to the deafult GET-->
+    <body onload="inputControl()">
         <h1>Client Page</h1>
         <div id="radioInput">
             <label id="actionLabel">Action</label>
             <input id="actionGET" type="radio" name="actionGroup" value="GET" onclick="inputControl()"checked="checked">GET
             <input id="actionPUT" type="radio" name="actionGroup" value="PUT" onclick="inputControl()">PUT
-            <input id="actionPOST" type="radio" name="actionGroup" value="POST">POST
-            <input id="actionDEL" type="radio" name="actionGroup" value="DELETE">DELETE<br>
+            <input id="actionPOST" type="radio" name="actionGroup" value="POST" onclick="inputControl()">POST
+            <input id="actionDEL" type="radio" name="actionGroup" value="DELETE" onclick="inputControl()">DELETE<br>
         </div>
         <div id = "getInput">
             <label id="labelFrom">From</label>
@@ -24,9 +25,25 @@
             <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON<br>
         </div>
         <div id = "putInput">
-            <label id = "curNameLabel">Currency Name</label>
-            <input id = "curName" type = "test">
-        </div> 
+            <label id = "labelPutCurCode">Currency Code</label>
+            <input id = "putCurCode" type = "text">
+            <label id = "labelPutFname">Currency Name</label>
+            <input id = "putFname" type = "text">
+            <label id = "labelPutRate">Rate</label>
+            <input id = "putRate" type = "text">
+            <label id = "labelPutCountries">Countries (Comma separated if more than one)</label>
+            <input id = "putCountries" type = "text">
+        </div>
+        <div id = "postInput">
+            <label id = "labelPostCurCode">Currency Code</label>
+            <input id = "postCurCode" type = "text">
+            <label id = "labelPostRate">Rate</label>
+            <input id = "postRate" type = "text">
+        </div>
+        <div id = "deleteInput">
+            <label id = "labelDeleteCode">Code to be deleted</label>
+            <input id = "deleteCode" type = "text">
+        </div>
         <div id = "submit">
             <button id="submitRequest" onclick="query()">Submit</button>
         </div>
