@@ -1,17 +1,30 @@
 <?php
 //Author: Gregory Jones
-//This script will be run once every few hours, data is pulled from http://www.openrates.io/. this needs to be changed to https://ratesapi.io/documentation/
+//This script will be run once every few hours, url data and app id are contained within config.xml
 //If there is a difference between the data then the script will update curData with the newer data.
 
+if (file_exists('config.xml'))
+{
+    $config = simplexml_load_file('config.xml');
+}
+else
+{
+    echo "Cant find currency data file.";
+    //Need to throw a service error here.
+}
+
 //This is the base currency of the api.
-$base = 'GBP';
+$base = $config->base;
+echo $base;
 
 if (file_exists('curData.xml'))
 {
     $xml = simplexml_load_file('curData.xml');
 }
-else{
+else
+{
     echo "Cant find currency data file.";
+    //Need to throw a service error here.
 }
 
 
@@ -34,14 +47,17 @@ function updateCurDataAcessed ($xml)
     }
 }
 
-function updateCurData ($xml, $base)
+function updateCurData ($xml, $base, $config)
 {
     //Checks if there are differences between the data in the xml file and the data in the currency feed.
-    $latestURL = "http://api.openrates.io/latest" . '?base=' . $base;
-    $latestData = json_decode(file_get_contents($latestURL));
+    $latestURL = $config->apiLatest . $config->apiID;
     echo $latestURL;
+    $latestData = json_decode(file_get_contents($latestURL));
+    
     print_r($latestData);
-
+    $timestamp = $latestData->{'timestamp'};
+    $apiUpdated = date("d/m/y \ h:i", $timestamp);
+    echo $apiUpdated;
     foreach ($xml->rates->cur as $currency)
     {
         //echo $currency->name;
@@ -70,6 +86,6 @@ function updateCurData ($xml, $base)
 
 //header('Content-Type: text/xml');
 //echo $xml;
-updateCurData($xml, $base);
+updateCurData($xml, $base, $config);
 updateCurDataAcessed($xml);
 ?>

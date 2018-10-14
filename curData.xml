@@ -1,133 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies>
   <updated>
-    <time>06:01</time>
-    <date>12/10/18</date>
+    <time>03:02</time>
+    <date>14/10/18</date>
+    <dataUpdated></dataUpdated>
   </updated>
   <rates>
     <cur>
       <name>USD</name>
-      <rate>1.2952</rate>
-      <loc/>
-    </cur>
-    <cur>
-      <name>GBP</name>
       <rate>1</rate>
       <loc/>
     </cur>
     <cur>
+      <name>GBP</name>
+      <rate>0.760225</rate>
+      <loc/>
+    </cur>
+    <cur>
       <name>CAD</name>
-      <rate>1.7076</rate>
+      <rate>1.304053</rate>
       <loc/>
     </cur>
     <cur>
       <name>AUD</name>
-      <rate>1.7995</rate>
+      <rate>1.405679</rate>
       <loc/>
     </cur>
     <cur>
       <name>BRL</name>
-      <rate>5.3347</rate>
+      <rate>3.783</rate>
       <loc/>
     </cur>
     <cur>
       <name>CHF</name>
-      <rate>1.2552</rate>
+      <rate>0.99194</rate>
       <loc/>
     </cur>
     <cur>
       <name>CNY</name>
-      <rate>8.8452</rate>
+      <rate>6.9222</rate>
       <loc/>
     </cur>
     <cur>
       <name>DKK</name>
-      <rate>8.3015</rate>
+      <rate>6.4543</rate>
       <loc/>
     </cur>
     <cur>
       <name>EUR</name>
-      <rate>1.1133</rate>
+      <rate>0.863895</rate>
       <loc/>
     </cur>
     <cur>
       <name>HKD</name>
-      <rate>10.167</rate>
+      <rate>7.83545</rate>
       <loc/>
     </cur>
     <cur>
       <name>HUF</name>
-      <rate>363.48</rate>
+      <rate>280.48</rate>
       <loc/>
     </cur>
     <cur>
       <name>INR</name>
-      <rate>93.202</rate>
+      <rate>73.686</rate>
       <loc/>
     </cur>
     <cur>
       <name>JPY</name>
-      <rate>144.23</rate>
+      <rate>112.213</rate>
       <loc/>
     </cur>
     <cur>
       <name>MXN</name>
-      <rate>24.899</rate>
+      <rate>18.856018</rate>
       <loc/>
     </cur>
     <cur>
       <name>MYR</name>
-      <rate>5.3571</rate>
+      <rate>4.154464</rate>
       <loc/>
     </cur>
     <cur>
       <name>NOK</name>
-      <rate>10.884</rate>
+      <rate>8.1746</rate>
       <loc/>
     </cur>
     <cur>
       <name>NZD</name>
-      <rate>1.9631</rate>
+      <rate>1.537043</rate>
       <loc/>
     </cur>
     <cur>
       <name>PHP</name>
-      <rate>69.683</rate>
+      <rate>54.002971</rate>
       <loc/>
     </cur>
     <cur>
       <name>RUB</name>
-      <rate>88.59</rate>
+      <rate>66.065</rate>
       <loc/>
     </cur>
     <cur>
       <name>SEK</name>
-      <rate>11.791</rate>
+      <rate>8.9618</rate>
       <loc/>
     </cur>
     <cur>
       <name>SGD</name>
-      <rate>1.7813</rate>
+      <rate>1.377897</rate>
       <loc/>
     </cur>
     <cur>
       <name>THB</name>
-      <rate>42.45</rate>
+      <rate>32.6955</rate>
       <loc/>
     </cur>
     <cur>
       <name>TRY</name>
-      <rate>8.4924</rate>
+      <rate>5.87264</rate>
       <loc/>
     </cur>
     <cur>
       <name>ZAR</name>
-      <rate>19.842</rate>
+      <rate>14.51687</rate>
       <loc/>
     </cur>
     <cur>
       <name>TEST</name>
-      <rate>PUTTEST</rate>
+      <rate></rate>
     </cur>
   </rates>
 </currencies>
