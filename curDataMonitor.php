@@ -58,6 +58,7 @@ function updateCurData ($xml, $base, $config)
     $timestamp = $latestData->{'timestamp'};
     $apiUpdated = date("d/m/y \ h:i", $timestamp);
     echo $apiUpdated;
+    $xml->updated->dataUpdated = $timestamp;
     foreach ($xml->rates->cur as $currency)
     {
         //echo $currency->name;

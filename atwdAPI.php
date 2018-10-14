@@ -2,8 +2,18 @@
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
-$base = 'GBP';
 
+
+if (file_exists('config.xml'))
+{
+    $config = simplexml_load_file('config.xml');
+}
+else
+{
+    echo "Cant find currency data file.";
+    //Need to throw a service error here.
+}
+$base = $config->base;
 //Get the exchange rates xml file for use in conversions.
 if (file_exists('curData.xml'))
 {
@@ -83,7 +93,7 @@ function respondGET ($query, $base, $xml)
         {
             $res = simplexml_load_file('getResXML.xml');
             
-            $res->conv->at = $xml->updated->date . ' ' . $xml->updated->time;
+            $res->conv->at = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
 
             //Origin or from return values input into response xml.
             $res->from->code = $origin;
@@ -107,7 +117,7 @@ function respondGET ($query, $base, $xml)
     {
         $res = json_decode(file_get_contents('getResJSON.json'), true);
 
-        $res['conv']['at'] = $xml->updated->date . ' ' . $xml->updated->time;
+        $res['conv']['at'] = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
         $res['conv']['rate'] = $result[1];
 
         //Input origin or from response values into JSON.
@@ -133,7 +143,7 @@ function respondPUT($xml)
 	$code = $putdata['code'];
 	$rate = $putdata['rate'];
     //Need to do the missing data values: country (comma separated), full name of currency
-    
+
 	//Put the new value in the XML file.
 	$rates = $xml->rates;
 	$cur = $rates->addChild('cur');
