@@ -40,6 +40,7 @@ function query()
                 break;
 
             case 'DELETE':
+                console.log("trying to delete");
                 break;
 
             default:
@@ -86,6 +87,10 @@ function query()
     else if(action === 'POST')
     {
         req.send(param);
+    }
+    else if(action === 'DELETE')
+    {
+        console.log("Hello");
     }
 	else
 	{

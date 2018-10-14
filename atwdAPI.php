@@ -3,6 +3,8 @@
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
 
+if (($stream = fopen('php://input', "r")) !== FALSE)
+    var_dump(stream_get_contents($stream));
 
 if (file_exists('config.xml'))
 {
@@ -28,13 +30,13 @@ else
 //Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query, $base, $xml)
 {
-
+    echo $method;
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
         case 'PUT': respondPUT($xml);break;
         case 'POST': respondPOST($xml);break;
-        case 'DELETE':break;
+        case 'DELETE': respondDELETE($xml);break;
     }
 }
 
@@ -187,6 +189,12 @@ function respondPOST($xml)
     file_put_contents('curData.xml', $xml->asxml());
     
 }
+
+function respondDELETE($xml)
+{
+    echo "Got request";
+}
+
 //echo convertCur($base, $origin, $target, $amount,$xml);
 methodController($method, $query, $base, $xml);
 
