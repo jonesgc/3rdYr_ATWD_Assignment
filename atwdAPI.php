@@ -130,15 +130,15 @@ function respondPUT($xml)
 {
   	//Extract the put data from the php stdin stream.
 	$putdata = json_decode(file_get_contents('php://input', true), true);
-	echo $putdata;
 	$code = $putdata['code'];
 	$rate = $putdata['rate'];
-
+    //Need to do the missing data values: country (comma separated), full name of currency
+    
 	//Put the new value in the XML file.
 	$rates = $xml->rates;
 	$cur = $rates->addChild('cur');
-	$name = $cur->addChild('name');
-	$name = $code;
+    $name = $cur->addChild('name', $code);
+    $rate = $cur->addChild('rate', $rate);
 
     //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
     //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure.
@@ -158,6 +158,24 @@ function respondPOST($xml)
     //This is because of the type of data coming from the client, need to handel this.
     $postdata = json_decode(file_get_contents('php://input', true), true);
     print_r($postdata);
+
+    //Get the rates for origin and target vs the base currency.
+    foreach ($xml->rates->cur as $currency)
+    {
+        $name = (string)$currency->name;
+        $rate = (string)$currency->rate;
+        
+        if($name == $postdata["code"])
+        {
+            echo "Found Code match";
+            echo $rate;
+            $rate = $postdata["rate"];
+            echo $rate;
+        }
+    }
+
+    file_put_contents('curData.xml', $xml->asxml());
+    
 }
 //echo convertCur($base, $origin, $target, $amount,$xml);
 methodController($method, $query, $base, $xml);

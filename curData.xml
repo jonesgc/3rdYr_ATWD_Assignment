@@ -125,5 +125,9 @@
       <rate>19.842</rate>
       <loc/>
     </cur>
+    <cur>
+      <name>TEST</name>
+      <rate>PUTTEST</rate>
+    </cur>
   </rates>
 </currencies>
