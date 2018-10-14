@@ -179,7 +179,7 @@ function respondPOST($xml)
         {
             echo "Found Code match";
             echo $rate;
-            $rate = $postdata["rate"];
+            $currency->rate = $postdata["rate"];
             echo $rate;
         }
     }
