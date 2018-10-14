@@ -29,7 +29,7 @@ function query()
                 break;
 
             case 'POST':
-                //Need to be careful when using JSON in post as it causes an extra step to be needed.
+                //Need to be careful when using JSON in post as it causes an extra step to be needed on server side.
                 //Best to create an alternative.
                 var obj = {"code":"", "rate":""};
                 obj["code"] = document.getElementById('postCurCode').value;
@@ -41,6 +41,8 @@ function query()
 
             case 'DELETE':
                 console.log("trying to delete");
+                param = document.getElementById("deleteCode").value;
+                url = "atwdAPI.php";
                 break;
 
             default:
@@ -72,14 +74,11 @@ function query()
           {
               console.log(this.responseText);
           }
-          else if (action === 'DELETE')
-          {
-              console.log(this.responseText);
-          }
-
       }
     };
+
     req.open(action, url , true);
+
 	if(action === 'PUT')
 	{
 		req.send(param);
@@ -91,6 +90,17 @@ function query()
     else if(action === 'DELETE')
     {
         console.log("Hello");
+        var delReq = new XMLHttpRequest();
+        delReq.open("POST", url, true);
+        delReq.onreadystatechange = function ()
+        {
+            if(this.readyState == 4 && this.status == 200)
+            {
+                console.log(this.responseText);
+            }
+        }
+        delReq.setRequestHeader("action", "DELETE");
+        delReq.send(param);
     }
 	else
 	{

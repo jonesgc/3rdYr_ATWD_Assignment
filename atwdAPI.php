@@ -30,7 +30,16 @@ else
 //Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query, $base, $xml)
 {
-    echo $method;
+    //This IF statement differenciates between a delete request and a true POST request. This is a work around, need to find a proper solution.
+    if($method == 'POST')
+    {
+        $headers = getallheaders();
+        //print_r($headers);
+        if($headers['action'] == 'DELETE')
+        {
+            $method = 'DELETE';
+        }
+    }
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
@@ -171,7 +180,7 @@ function respondPOST($xml)
     $postdata = json_decode(file_get_contents('php://input', true), true);
     print_r($postdata);
 
-    //Get the rates for origin and target vs the base currency.
+    //Iterate through the xml file, this is done so multiple values could be changed if need be.
     foreach ($xml->rates->cur as $currency)
     {
         $name = (string)$currency->name;
@@ -192,7 +201,22 @@ function respondPOST($xml)
 
 function respondDELETE($xml)
 {
-    echo "Got request";
+    $code = file_get_contents('php://input', true);
+
+    //Iterate through XML looking for code, then set the inative flag to TRUE.
+    foreach ($xml->rates->cur as $currency)
+    {
+        $name = (string)$currency->name;
+        $rate = (string)$currency->rate;
+        
+        if($name == $code)
+        {
+            echo "Found Code match";
+            $currency->inactive = 'TRUE';
+        }
+    }
+
+    file_put_contents('curData.xml', $xml->asxml());
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);

@@ -128,7 +128,8 @@
     </cur>
     <cur>
       <name>TEST</name>
-      <rate>123</rate>
+      <rate>1235</rate>
+      <inactive>TRUE</inactive>
     </cur>
   </rates>
 </currencies>
