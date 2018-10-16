@@ -77,13 +77,34 @@ function convertCur($base, $origin, $target, $amount, $xml)
             $targetVal = $rate;
         }
     }
+	//Check if originVal and targetVal are still zero, if so that means the code
+	//has not been matched.
+	if(($originVal == 0) || ($targetVal == 0))
+	{
+		//This sends the error infomation to the parent function which is
+		//responsible for passing the proper error to the client.
+		$err = array("ERROR", "1200", "");
 
-    //Perform the conversion, using the base currency as a "stepping stone"
-    $newAmount = ($amount * $originVal)/$targetVal;
+		if($originVal == 0)
+		{
+			$err[2] =  "From code not found";
+		}
+		else
+		{
+			$err[2] = "To code not found";
+		}
+		return $err;
+	}
+	else
+	{
+		//Perform the conversion, using the base currency as a "stepping stone"
+	    $newAmount = ($amount * $originVal)/$targetVal;
 
-    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
+	    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
-    return $result;
+	    return $result;
+	}
+
 }
 
 //Respond to a GET request.
@@ -97,6 +118,12 @@ function respondGET ($query, $base, $xml)
     $type = $params[3];
     $result = convertCur($base, $origin, $target, $amount, $xml);
 
+	//Catch an error in currency codes being wrong.
+	if($result[0] == "ERROR")
+	{
+		//This needs to be replaced by XML/JSON error msg
+		echo "ERROR";
+	}
     if($type == 'XML')
     {
         //Find the get response XML template.

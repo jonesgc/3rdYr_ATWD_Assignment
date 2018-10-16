@@ -111,8 +111,7 @@ function inputControl()
     //This function executes if the put attribute is clicked.
     //Desired visible div is always at the top of each block.
     var radio  = document.querySelector('input[name=actionGroup]:checked').value;
-    console.log(radio);
-
+	
     switch (radio)
     {
         case 'GET':
