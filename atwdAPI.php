@@ -103,7 +103,7 @@ function respondGET ($query, $base, $xml)
         if (file_exists('curData.xml'))
         {
             $res = simplexml_load_file('getResXML.xml');
-            
+
             $res->conv->at = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
 
             //Origin or from return values input into response xml.
@@ -116,6 +116,7 @@ function respondGET ($query, $base, $xml)
             $res->to->code = $target;
             $res->to->amnt = $result[5];
 
+			//Send response to server.
             echo $res->asxml();
         }
         else
@@ -126,6 +127,7 @@ function respondGET ($query, $base, $xml)
     }
     elseif($type == 'JSON')
     {
+		//Need to insert try catch.
         $res = json_decode(file_get_contents('getResJSON.json'), true);
 
         $res['conv']['at'] = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
@@ -142,6 +144,8 @@ function respondGET ($query, $base, $xml)
         $res['conv']['to']['amnt'] = $result[5];
 
         $res = json_encode($res);
+
+		//Send response to client.
         echo $res;
     }
 
@@ -167,36 +171,30 @@ function respondPUT($xml)
     $dom->preserveWhiteSpace = false;
     $dom->formatOutput = true;
     $dom->loadXML($xml->asXML());
-    
+
     $dom->save('curData.xml');
 
-    echo "Putting stuff in the file.";
-    
 }
 
 function respondPOST($xml)
-{   
+{
     //This is because of the type of data coming from the client, need to handel this.
     $postdata = json_decode(file_get_contents('php://input', true), true);
-    print_r($postdata);
 
     //Iterate through the xml file, this is done so multiple values could be changed if need be.
     foreach ($xml->rates->cur as $currency)
     {
         $name = (string)$currency->name;
         $rate = (string)$currency->rate;
-        
+
         if($name == $postdata["code"])
         {
-            echo "Found Code match";
-            echo $rate;
             $currency->rate = $postdata["rate"];
-            echo $rate;
         }
     }
 
     file_put_contents('curData.xml', $xml->asxml());
-    
+
 }
 
 function respondDELETE($xml)
@@ -208,11 +206,15 @@ function respondDELETE($xml)
     {
         $name = (string)$currency->name;
         $rate = (string)$currency->rate;
-        
+
         if($name == $code)
         {
-            echo "Found Code match";
-            $currency->inactive = 'TRUE';
+            $currency->inactive = "TRUE";
+
+			if($currency->inactive == "TRUE")
+			{
+				echo "Currency is already inactive.";
+			}
         }
     }
 

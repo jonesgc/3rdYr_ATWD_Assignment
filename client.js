@@ -2,7 +2,6 @@ function query()
 {
     var baseurl = "atwdAPI.php?";
     var action =  document.querySelector('input[name=actionGroup]:checked').value;
-    console.log(action);
     //If there is an action selected (GET should be default) commence with URL building.
     if(action)
     {
@@ -36,11 +35,9 @@ function query()
                 obj["rate"] = document.getElementById('postRate').value;
                 var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
-                console.log(param);
                 break;
 
             case 'DELETE':
-                console.log("trying to delete");
                 param = document.getElementById("deleteCode").value;
                 url = "atwdAPI.php";
                 break;
@@ -115,8 +112,8 @@ function inputControl()
     //Desired visible div is always at the top of each block.
     var radio  = document.querySelector('input[name=actionGroup]:checked').value;
     console.log(radio);
-    
-    switch (radio) 
+
+    switch (radio)
     {
         case 'GET':
             document.getElementById('getInput').style.visibility = 'visible';
@@ -145,5 +142,5 @@ function inputControl()
         default:
             break;
     }
-    
+
 };
