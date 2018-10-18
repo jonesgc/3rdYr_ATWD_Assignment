@@ -20,31 +20,41 @@ else
 }
 
 $data = json_decode(file_get_contents("https://restcountries.eu/rest/v2/all"),true);
-$test = array_search('USD', $data);
-echo $test;
 
 
-foreach ($xml->rates->cur as $currency)
+
+foreach ($data as $obj)
+{
+
+    foreach ($xml->rates->cur as $currency)
     {
-        foreach ($data as $obj)
-        {
-            //print_r($obj["currencies"][0]);
-            if($currency->name == $obj["currencies"][0]["code"])
-            {
-                //make the new code node
-                $cur = $xml->rates->cur;
-                $cur->addChild("code", $currency->name);
-                //Add the location node.
-                $xml->rates->cur->addChild("loc");
-    
-                //Change the name to full name.
-                $xml->rates->cur->name = $obj["currencies"][0]["name"];
-    
-                $xml->rates->cur->addChild("inactive", "FALSE");
-            }
+        //echo $currency->name->asxml();
+        //echo " ";
+        if($currency->name == $obj["currencies"][0]["code"])
+        {  
+            $currency->code = $obj["currencies"][0]["code"];
+            $currency->name = $obj["currencies"][0]["name"];
         }
-       
     }
-echo $xml->asxml();
-file_put_contents('curData.xml', $xml->asxml());
+   
+}
+
+    
+/*make the new code node
+$cur = $currency->name;
+$cur->addChild("code", $currency->name);
+//Add the location node.
+$xml->rates->cur->addChild("loc");
+
+//Change the name to full name.
+$xml->rates->cur->name = $obj["currencies"][0]["name"];
+*/
+
+//echo $xml->asxml();
+$dom = new DOMDocument('1.0');
+$dom->preserveWhiteSpace = false;
+$dom->formatOutput = true;
+$dom->loadXML($xml->asXML());
+
+$dom->save('curData.xml')
 ?>
