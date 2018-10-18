@@ -27,6 +27,12 @@ else
 }
 
 
+
+function generate_error($errorHash)
+{
+
+}
+
 //Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query, $base, $xml)
 {
@@ -61,18 +67,18 @@ function convertCur($base, $origin, $target, $amount, $xml)
     //Get the rates for origin and target vs the base currency.
     foreach ($xml->rates->cur as $currency)
     {
-        $name = (string)$currency->name;
+        $code = (string)$currency->code;
         $rate = (string)$currency->rate;
 
-        if($name == $base)
+        if($code == $base)
         {
             //Cannot alter the base currency in this function.
         }
-        elseif($name == $origin)
+        elseif($code == $origin)
         {
             $originVal = $rate;
         }
-        elseif($name == $target)
+        elseif($code == $target)
         {
             $targetVal = $rate;
         }
@@ -98,7 +104,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
 	else
 	{
 		//Perform the conversion, using the base currency as a "stepping stone"
-	    $newAmount = ($amount * $originVal)/$targetVal;
+	    $newAmount = ($amount / $originVal)*$targetVal;
 
 	    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
@@ -189,7 +195,7 @@ function respondPUT($xml)
 	//Put the new value in the XML file.
 	$rates = $xml->rates;
 	$cur = $rates->addChild('cur');
-    $name = $cur->addChild('name', $code);
+    $code = $cur->addChild('name', $code);
     $rate = $cur->addChild('rate', $rate);
 
     //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
@@ -211,10 +217,10 @@ function respondPOST($xml)
     //Iterate through the xml file, this is done so multiple values could be changed if need be.
     foreach ($xml->rates->cur as $currency)
     {
-        $name = (string)$currency->name;
+        $code = (string)$currency->name;
         $rate = (string)$currency->rate;
 
-        if($name == $postdata["code"])
+        if($code == $postdata["code"])
         {
             $currency->rate = $postdata["rate"];
         }
@@ -231,10 +237,10 @@ function respondDELETE($xml)
     //Iterate through XML looking for code, then set the inative flag to TRUE.
     foreach ($xml->rates->cur as $currency)
     {
-        $name = (string)$currency->name;
+        $code = (string)$currency->name;
         $rate = (string)$currency->rate;
 
-        if($name == $code)
+        if($code == $code)
         {
             $currency->inactive = "TRUE";
 
