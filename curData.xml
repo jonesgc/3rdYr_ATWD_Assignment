@@ -10,125 +10,151 @@
       <name>USD</name>
       <rate>1</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>GBP</name>
       <rate>0.756797</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>CAD</name>
       <rate>1.295059</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>AUD</name>
       <rate>1.400992</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>BRL</name>
       <rate>3.703499</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>CHF</name>
       <rate>0.988052</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>CNY</name>
       <rate>6.9123</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>DKK</name>
       <rate>6.438305</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>EUR</name>
       <rate>0.862952</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>HKD</name>
       <rate>7.83755</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>HUF</name>
       <rate>277.770982</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>INR</name>
       <rate>73.30894</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>JPY</name>
       <rate>112.1635</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>MXN</name>
       <rate>18.753107</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>MYR</name>
       <rate>4.14869</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>NOK</name>
       <rate>8.128385</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>NZD</name>
       <rate>1.51807</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>PHP</name>
       <rate>53.764886</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>RUB</name>
       <rate>65.4061</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>SEK</name>
       <rate>8.89939</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>SGD</name>
       <rate>1.374298</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>THB</name>
       <rate>32.53225</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>TRY</name>
       <rate>5.78585</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
       <name>ZAR</name>
       <rate>14.229113</rate>
       <loc/>
+      <inactive>FALSE</inactive>
     </cur>
     <cur>
+      <code/>
       <name>TEST</name>
-      <rate></rate>
+      <rate/>
+      <loc/>
       <inactive>TRUE</inactive>
     </cur>
   </rates>
