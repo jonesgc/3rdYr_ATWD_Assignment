@@ -2,9 +2,8 @@
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
+include_once "config.php";
 
-if (($stream = fopen('php://input', "r")) !== FALSE)
-    var_dump(stream_get_contents($stream));
 
 if (file_exists('config.xml'))
 {
@@ -27,11 +26,35 @@ else
 }
 
 
-
-function generate_error($errorHash)
+//Purpose of this function is to send an error response to the client, the default format is XML, but an option for JSON.
+//The code will generate an error string, which would be the error code it wants to throw.
+function generate_error($errorHash, $error, $type="XML")
 {
+    if($type == "XML")
+    {
+        header('Content-Type: text/xml');
+        echo '<?xml version="1.0" encoding="UTF-8"?>';
+        echo "<method =". $error[1].">";
+        echo "<error>";
+        echo "<code>".$error[0]."</code>";
+        echo "<msg>".$errorHash[$error[0]]."</msg>";
+        echo "</error>";
+        echo "</method>";
 
+        
+    }
+    elseif($type == "JSON")
+    {
+
+    }
+    else
+    {
+        echo "Error in error reporting function";
+    }
 }
+//Test for above function.
+//$error = array ("1500","Test");
+//generate_error($errorHash, $error, $type="XML");
 
 //Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query, $base, $xml)
@@ -63,7 +86,6 @@ function convertCur($base, $origin, $target, $amount, $xml)
 
     $originVal = 0;
     $targetVal = 0;
-
     //Get the rates for origin and target vs the base currency.
     foreach ($xml->rates->cur as $currency)
     {
@@ -90,22 +112,32 @@ function convertCur($base, $origin, $target, $amount, $xml)
 		//This sends the error infomation to the parent function which is
 		//responsible for passing the proper error to the client.
 		$err = array("ERROR", "1200", "");
-
+    
 		if($originVal == 0)
 		{
 			$err[2] =  "From code not found";
 		}
-		else
+		elseif($targetVal == 0)
 		{
 			$err[2] = "To code not found";
-		}
+        }
+        elseif(($originVal == 0) && ($targetVal))
+        {
+            $err[3] = "Both codes not found";
+        }
 		return $err;
-	}
+    }
+    //Check if the amount is a decimal.
+    elseif (!preg_match('/\./', $amount))
+    {   
+        $err = array("ERROR", "1300");
+        return $err;
+    }
 	else
 	{
 		//Perform the conversion, using the base currency as a "stepping stone"
-	    $newAmount = ($amount / $originVal)*$targetVal;
-
+	    $newAmount = ($amount / $originVal) * $targetVal;
+        echo $newAmount;
 	    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
 	    return $result;
@@ -127,10 +159,10 @@ function respondGET ($query, $base, $xml)
 	//Catch an error in currency codes being wrong.
 	if($result[0] == "ERROR")
 	{
-		//This needs to be replaced by XML/JSON error msg
-		echo "ERROR";
+        //Throw an error depending on what cause the convert cur function to error.
+        generate_error($errorHash, $result, $type);
 	}
-    if($type == 'XML')
+    elseif($type == 'XML')
     {
         //Find the get response XML template.
         if (file_exists('curData.xml'))
@@ -142,7 +174,7 @@ function respondGET ($query, $base, $xml)
             //Origin or from return values input into response xml.
             $res->from->code = $origin;
             $res->from->rate = $result[1];
-            //Missing location data!
+            
             $res->from->amnt = $amount;
 
             //Target or to values input into response xml.

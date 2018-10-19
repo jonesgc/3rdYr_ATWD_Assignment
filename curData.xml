@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<currencies>
+<currencies base = "USD">
   <updated>
     <time>03:43</time>
     <date>16/10/18</date>
