@@ -3,7 +3,7 @@
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
 include_once "config.php";
-
+include_once "generate_error.php";
 
 if (file_exists('config.xml'))
 {
@@ -26,35 +26,7 @@ else
 }
 
 
-//Purpose of this function is to send an error response to the client, the default format is XML, but an option for JSON.
-//The code will generate an error string, which would be the error code it wants to throw.
-function generate_error($errorHash, $error, $type="XML")
-{
-    if($type == "XML")
-    {
-        header('Content-Type: text/xml');
-        echo '<?xml version="1.0" encoding="UTF-8"?>';
-        echo "<method =". $error[1].">";
-        echo "<error>";
-        echo "<code>".$error[0]."</code>";
-        echo "<msg>".$errorHash[$error[0]]."</msg>";
-        echo "</error>";
-        echo "</method>";
 
-        
-    }
-    elseif($type == "JSON")
-    {
-
-    }
-    else
-    {
-        echo "Error in error reporting function";
-    }
-}
-//Test for above function.
-//$error = array ("1500","Test");
-//generate_error($errorHash, $error, $type="XML");
 
 //Swtitch on the method in the request then call the corisponding function.
 function methodController($method, $query, $base, $xml)
@@ -160,7 +132,7 @@ function respondGET ($query, $base, $xml)
 	if($result[0] == "ERROR")
 	{
         //Throw an error depending on what cause the convert cur function to error.
-        generate_error($errorHash, $result, $type);
+        generate_error($result, $type);
 	}
     elseif($type == 'XML')
     {

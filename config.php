@@ -16,4 +16,5 @@ $errorHash = array(1000=>"Required parameter is missing",
     2300 => "Country name in wrong format or is missing",
     2400 => "Currency code not found for update",
     2500 => "Error in service");
+$GLOBALS['errorHash'] = $errorHash;
 ?>
