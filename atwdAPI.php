@@ -40,7 +40,7 @@ function methodController($method, $query, $base, $xml)
         {
             $method = 'DELETE';
         }
-    }
+    } 
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
@@ -143,6 +143,15 @@ function respondGET ($query, $base, $xml)
     $type = $params[3];
     $result = convertCur($base, $origin, $target, $amount, $xml);
 
+     //Get the data for the response from XML file.
+     $oDat = findData($origin, $xml);
+     $oCurrName = $oDat['name'];
+     $oLocs = $oDat['loc'];
+
+     $tDat = findData($target, $xml);
+     $tCurrName = $tDat['name'];
+     $tLocs = $tDat['loc'];
+
 	//Catch an error in currency codes being wrong.
 	if($result[0] == "ERROR")
 	{
@@ -158,14 +167,6 @@ function respondGET ($query, $base, $xml)
 
             $res->conv->at = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
             
-            //Get the data for the response from XML file.
-            $oDat = findData($origin, $xml);
-            $oCurrName = $oDat['name'];
-            $oLocs = $oDat['loc'];
-
-            $tDat = findData($target, $xml);
-            $tCurrName = $tDat['name'];
-            $tLocs = $tDat['loc'];
 
             //Origin or from return values input into response xml.
             $res->from->code = $origin;
@@ -198,12 +199,14 @@ function respondGET ($query, $base, $xml)
 
         //Input origin or from response values into JSON.
         $res['conv']['from']['code'] = $origin;
-        //Need currency name.
-        //Need location data.
+        $res['conv']['from']['curr'] = $oCurrName;
+        $res['conv']['from']['loc'] = $oLocs;
         $res['conv']['from']['amnt' ]= $amount;
 
         //Input target or to response values into JSON.
         $res['conv']['to']['code'] = $target;
+        $res['conv']['to']['curr'] = $tCurrName;
+        $res['conv']['to']['loc'] = $tLocs;
         $res['conv']['to']['amnt'] = $result[5];
 
         $res = json_encode($res);
@@ -237,29 +240,49 @@ function respondPUT($xml)
 
     $dom->save('curData.xml');
 
-    //Send response to client.
-
 }
 
 function respondPOST($xml)
 {
     //This is because of the type of data coming from the client, need to handel this.
     $postdata = json_decode(file_get_contents('php://input', true), true);
-
-    //Iterate through the xml file, this is done so multiple values could be changed if need be.
+    
+    //Find code match and update the currency rate.
     foreach ($xml->rates->cur as $currency)
     {
         $code = (string)$currency->name;
         $rate = (string)$currency->rate;
 
-        if($code == $postdata["code"])
-        {
-            $currency->rate = $postdata["rate"];
+        if($code == $postdata['code'])
+        {   
+            //Old rate is required for response to client.
+            $oldrate = $currency->rate;
+            $currency->rate = $postdata['rate'];
         }
     }
 
     file_put_contents('curData.xml', $xml->asxml());
 
+    //Send response to client.
+    $method = $_SERVER['REQUEST_METHOD'];
+    $node = findData($postdata['code'], $xml);
+    $locs = $node['loc'];
+    $code = $node['code'];
+    $name = $node['name'];
+    $rate = $node['rate'];
+    echo <<<EOT
+    <?xml version="1.0" encoding="UTF-8"?>
+    <method type = $method>
+        <at></at>
+        <rate>$rate</rate>
+        <old_rate>$oldrate</old_rate>
+        <curr>
+            <code>$code</code>
+            <name>$name</name>
+            <loc>$locs</loc>
+        </curr>
+    </method>
+EOT;
 }
 
 function respondDELETE($xml)

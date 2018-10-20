@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<currencies base = "USD">
+<currencies base="USD">
   <updated>
     <time>03:43</time>
     <date>16/10/18</date>
@@ -177,7 +177,7 @@
     <cur>
       <code/>
       <name>TEST</name>
-      <rate/>
+      <rate>1234</rate>
       <loc/>
       <inactive>TRUE</inactive>
     </cur>
