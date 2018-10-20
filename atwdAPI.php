@@ -109,14 +109,29 @@ function convertCur($base, $origin, $target, $amount, $xml)
 	{
 		//Perform the conversion, using the base currency as a "stepping stone"
 	    $newAmount = ($amount / $originVal) * $targetVal;
-        echo $newAmount;
 	    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
 	    return $result;
 	}
 
 }
-
+//This function loops through the XML file finding a match based on the code, it then returns an array with the data for that node.
+//The rate described is the rate vs the base currency.
+function findData($code, $xml)
+{
+    $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0);
+    foreach($xml->rates->cur as $currency)
+            {
+                if($currency->code == $code)
+                {
+                    $node['code'] = $currency->code;
+                    $node['name'] = $currency->name;
+                    $node['loc'] = $currency->loc;
+                    $node['rate'] = $currency->rate;
+                }
+            }
+    return $node;
+}
 //Respond to a GET request.
 //Expected response type is XML.
 function respondGET ($query, $base, $xml)
@@ -142,16 +157,27 @@ function respondGET ($query, $base, $xml)
             $res = simplexml_load_file('getResXML.xml');
 
             $res->conv->at = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
+            
+            //Get the data for the response from XML file.
+            $oDat = findData($origin, $xml);
+            $oCurrName = $oDat['name'];
+            $oLocs = $oDat['loc'];
+
+            $tDat = findData($target, $xml);
+            $tCurrName = $tDat['name'];
+            $tLocs = $tDat['loc'];
 
             //Origin or from return values input into response xml.
             $res->from->code = $origin;
+            $res->from->curr = $oCurrName;
             $res->from->rate = $result[1];
-            
+            $res->from->loc = $oLocs;
             $res->from->amnt = $amount;
-
             //Target or to values input into response xml.
             $res->to->code = $target;
+            $res->to->curr = $tCurrName;
             $res->to->amnt = $result[5];
+            $res->to->loc = $tLocs;
 
 			//Send response to server.
             echo $res->asxml();
@@ -212,7 +238,7 @@ function respondPUT($xml)
     $dom->save('curData.xml');
 
     //Send response to client.
-    
+
 }
 
 function respondPOST($xml)
