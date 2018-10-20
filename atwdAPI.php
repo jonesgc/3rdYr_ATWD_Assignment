@@ -211,6 +211,8 @@ function respondPUT($xml)
 
     $dom->save('curData.xml');
 
+    //Send response to client.
+    
 }
 
 function respondPOST($xml)

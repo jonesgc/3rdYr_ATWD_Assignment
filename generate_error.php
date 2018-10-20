@@ -11,10 +11,10 @@ function generate_error($error, $type="XML")
     {
         header('Content-Type: text/xml');
         echo '<?xml version="1.0" encoding="UTF-8"?>';
-        echo '<method type="'. $error[1].'">';
+        echo '<method type="'. $type.'">';
         echo "<error>";
-        echo "<code>".$error[0]."</code>";
-        echo "<msg>". $GLOBALS['errorHash'][$error[0]]."</msg>";
+        echo "<code>".$error[1]."</code>";
+        echo "<msg>". $GLOBALS['errorHash'][$error[1]]."</msg>";
         echo "</error>";
         echo "</method>";
 
@@ -22,7 +22,9 @@ function generate_error($error, $type="XML")
     }
     elseif($type == "JSON")
     {
-
+        $res = array('method'=>$type, 'code'=>$error[1],'message'=>$GLOBALS['errorHash'][$error[1]]);
+        $res = json_encode($res);
+        print_r($res);
     }
     else
     {
@@ -30,7 +32,7 @@ function generate_error($error, $type="XML")
     }
 }
 //Test for above function.
-//$error = array ("1500","Test");
+//$error = array ("ERROR","1500","Test");
 //generate_error($error, $type="XML");
 
 ?>
