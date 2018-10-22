@@ -1,7 +1,7 @@
 <?php
 
 include_once "config.php";
-include_once "generate_error.php";
+include_once "generateError.php";
 
 
 
@@ -16,8 +16,8 @@ if (file_exists('config.xml'))
 }
 else
 {
-    echo "Cant find currency data file.";
-    //Need to throw a service error here.
+    $err = 1500;
+    generateError($err,"XML");
 }
 
 
@@ -139,7 +139,8 @@ function respondGET ($query, $base, $xml)
 	if($result[0] == "ERROR")
 	{
         //Throw an error depending on what cause the convert cur function to error.
-        generate_error($result, $type);
+        $err = $result[1];
+        generateError($err, $type);
 	}
     elseif($type == 'XML')
     {
