@@ -74,7 +74,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
 		//This sends the error infomation to the parent function which is
 		//responsible for passing the proper error to the client.
 		$err = array("ERROR", "1200", "");
-    
+
 		if($originVal == 0)
 		{
 			$err[2] =  "From code not found";
@@ -91,7 +91,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
     }
     //Check if the amount is a decimal.
     elseif (!preg_match('/\./', $amount))
-    {   
+    {
         $err = array("ERROR", "1300");
         return $err;
     }
@@ -108,7 +108,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
 
 
 //Respond to a GET request, response is echoed to client in format requested.
-//Base is declared in config.php. 
+//Base is declared in config.php.
 function respondGET ($query, $base, $xml)
 {
 
@@ -116,10 +116,7 @@ function respondGET ($query, $base, $xml)
     $params = (explode('&', $query));
 
     //Check if query string is empty.
-    if($params)
-    {
-        generateError(1000, "XML");
-    }
+
 
     $origin = $params[0];
     $target = $params[1];
@@ -153,13 +150,13 @@ function respondGET ($query, $base, $xml)
             generateError(1100, "XML");
         }
     }
-    //Check if either of the other parameters are missing.
+    /*//Check if either of the other parameters are missing.
     elseif(($amount = "") || ($type = ""))
     {
         generateError(1000, "XML");
-    } 
+    }*/
     //Check response type, must match either XML or JSON.
-    elseif(($type != 'XML') || ($type != 'JSON'))
+    elseif(($type != "JSON") && ($type != "XML"))
     {
         generateError(1400,"XML");
     }
@@ -172,11 +169,11 @@ function respondGET ($query, $base, $xml)
         $oDat = findData($origin, $xml);
         $oCurrName = $oDat['name'];
         $oLocs = $oDat['loc'];
-   
+
         $tDat = findData($target, $xml);
         $tCurrName = $tDat['name'];
         $tLocs = $tDat['loc'];
-        
+
         //Catch an error in currency codes being wrong.
         if($result[0] == "ERROR")
         {
@@ -189,10 +186,10 @@ function respondGET ($query, $base, $xml)
            if (file_exists('curData.xml'))
            {
                $res = simplexml_load_file('getResXML.xml');
-   
+
                $res->conv->at = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
-               
-   
+
+
                //Origin or from return values input into response xml.
                $res->from->code = $origin;
                $res->from->curr = $oCurrName;
@@ -204,7 +201,7 @@ function respondGET ($query, $base, $xml)
                $res->to->curr = $tCurrName;
                $res->to->amnt = $result[5];
                $res->to->loc = $tLocs;
-   
+
                //Send response to server.
                echo $res->asxml();
            }
@@ -218,29 +215,29 @@ function respondGET ($query, $base, $xml)
        {
            //Need to insert try catch.
            $res = json_decode(file_get_contents('getResJSON.json'), true);
-   
+
            $res['conv']['at'] = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
            $res['conv']['rate'] = $result[1];
-   
+
            //Input origin or from response values into JSON.
            $res['conv']['from']['code'] = $origin;
            $res['conv']['from']['curr'] = $oCurrName;
            $res['conv']['from']['loc'] = $oLocs;
            $res['conv']['from']['amnt' ]= $amount;
-   
+
            //Input target or to response values into JSON.
            $res['conv']['to']['code'] = $target;
            $res['conv']['to']['curr'] = $tCurrName;
            $res['conv']['to']['loc'] = $tLocs;
            $res['conv']['to']['amnt'] = $result[5];
-   
+
            $res = json_encode($res);
-   
+
            //Send response to client.
            echo $res;
        }
     }
-   
+
 
 }
 ?>
