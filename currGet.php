@@ -150,11 +150,11 @@ function respondGET ($query, $base, $xml)
             generateError(1100, "XML");
         }
     }
-    /*//Check if either of the other parameters are missing.
-    elseif(($amount = "") || ($type = ""))
+    //Check if either of the other parameters are missing.
+    elseif(($amount == "") || ($type == ""))
     {
         generateError(1000, "XML");
-    }*/
+    }
     //Check response type, must match either XML or JSON.
     elseif(($type != "JSON") && ($type != "XML"))
     {
