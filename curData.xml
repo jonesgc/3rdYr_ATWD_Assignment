@@ -175,10 +175,10 @@
       <inactive>FALSE</inactive>
     </cur>
     <cur>
-      <code/>
+      <code>TEST</code>
       <name>TEST</name>
-      <rate>1234</rate>
-      <loc/>
+      <rate>1</rate>
+      <loc>hello,</loc>
       <inactive>TRUE</inactive>
     </cur>
   </rates>

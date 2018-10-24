@@ -65,11 +65,13 @@ function query()
 		  }
 		  else if (action === 'PUT')
 		  {
-			  console.log(this.responseText);
+              console.log(this.responseText.toString());
+              document.getElementById('responseTextArea').value = this.responseText;
           }
           else if (action === 'POST')
           {
-              console.log(this.responseText);
+              console.log(this.responseText.toString());
+              document.getElementById('responseTextArea').value = this.responseText;
           }
       }
     };
@@ -94,6 +96,7 @@ function query()
             if(this.readyState == 4 && this.status == 200)
             {
                 console.log(this.responseText);
+                document.getElementById('responseTextArea').value = this.responseText;
             }
         }
         delReq.setRequestHeader("action", "DELETE");

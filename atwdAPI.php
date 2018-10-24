@@ -1,10 +1,12 @@
 <?php
 
-$method = $_SERVER['REQUEST_METHOD'];
-$query = $_SERVER['QUERY_STRING'];
 include_once "config.php";
 include_once "generateError.php";
 include_once "currGet.php";
+include_once "currPOST.php";
+
+$method = $_SERVER['REQUEST_METHOD'];
+$query = $_SERVER['QUERY_STRING'];
 
 
 
@@ -30,10 +32,7 @@ function methodController($method, $query, $base, $xml)
     {
         $headers = getallheaders();
         //print_r($headers);
-        if($headers['action'] == 'DELETE')
-        {
-            $method = 'DELETE';
-        }
+        
     } 
     switch ($method)
     {
@@ -70,48 +69,7 @@ function respondPUT($xml)
 
 }
 
-function respondPOST($xml)
-{
-    //This is because of the type of data coming from the client, need to handel this.
-    $postdata = json_decode(file_get_contents('php://input', true), true);
-    
-    //Find code match and update the currency rate.
-    foreach ($xml->rates->cur as $currency)
-    {
-        $code = (string)$currency->name;
-        $rate = (string)$currency->rate;
 
-        if($code == $postdata['code'])
-        {   
-            //Old rate is required for response to client.
-            $oldrate = $currency->rate;
-            $currency->rate = $postdata['rate'];
-        }
-    }
-
-    file_put_contents('curData.xml', $xml->asxml());
-
-    //Send response to client.
-    $method = $_SERVER['REQUEST_METHOD'];
-    $node = findData($postdata['code'], $xml);
-    $locs = $node['loc'];
-    $code = $node['code'];
-    $name = $node['name'];
-    $rate = $node['rate'];
-    echo <<<EOT
-    <?xml version="1.0" encoding="UTF-8"?>
-    <method type = $method>
-        <at></at>
-        <rate>$rate</rate>
-        <old_rate>$oldrate</old_rate>
-        <curr>
-            <code>$code</code>
-            <name>$name</name>
-            <loc>$locs</loc>
-        </curr>
-    </method>
-EOT;
-}
 
 function respondDELETE($xml)
 {
