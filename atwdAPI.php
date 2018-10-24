@@ -3,7 +3,7 @@
 include_once "config.php";
 include_once "generateError.php";
 include_once "currGet.php";
-include_once "currPOST.php";
+include_once "currPost.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];

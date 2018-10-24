@@ -177,7 +177,7 @@
     <cur>
       <code>TEST</code>
       <name>TEST</name>
-      <rate>1</rate>
+      <rate>1.0</rate>
       <loc>hello,</loc>
       <inactive>TRUE</inactive>
     </cur>
