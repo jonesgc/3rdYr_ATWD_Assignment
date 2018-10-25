@@ -1,21 +1,12 @@
 <?php
 //Author: Gregory Jones
-//This script will be run once every few hours, url data and app id are contained within config.xml
+//This script will be run once every few hours, url data and app id are contained within config.php
 //If there is a difference between the data then the script will update curData with the newer data.
 
-if (file_exists('config.xml'))
-{
-    $config = simplexml_load_file('config.xml');
-}
-else
-{
-    echo "Cant find currency data file.";
-    //Need to throw a service error here.
-}
+include_once "config.php";
 
-//This is the base currency of the api.
-$base = $config->base;
-echo $base;
+date_default_timezone_set("UTC");
+
 
 if (file_exists('curData.xml'))
 {
@@ -47,36 +38,38 @@ function updateCurDataAcessed ($xml)
     }
 }
 
-function updateCurData ($xml, $base, $config)
+function updateCurData ($xml, $base, $URL)
 {
-    //Checks if there are differences between the data in the xml file and the data in the currency feed.
-    $latestURL = $config->apiLatest . $config->apiID;
-    echo $latestURL;
-    $latestData = json_decode(file_get_contents($latestURL));
+    //echo $latestURL;
+    $latestData = json_decode(file_get_contents($URL));
     
-    print_r($latestData);
+    //print_r($latestData);
     $timestamp = $latestData->{'timestamp'};
     $apiUpdated = date("d/m/y \ h:i", $timestamp);
-    echo $apiUpdated;
+    //echo $apiUpdated;
     $xml->updated->dataUpdated = $timestamp;
+    
     foreach ($xml->rates->cur as $currency)
     {
         //echo $currency->name;
-        $name = (string)$currency->name;
+        $code = (string)$currency->code;
         $rate = (string)$currency->rate;
         //echo $currency->rate;
         //echo $latestData->rates->$name;
 
-        if($currency->name == $base)
+        if($currency->code == $base)
         {
             //Always set the base currency to 1.
             $currency->rate = 1;
         }
-        elseif($name == $currency->name)
+        elseif($currency->code == 'TEST')
         {
-            $currency->rate = $latestData->rates->$name;
+            //test is used for debugging only, remove for submission.
         }
-
+        elseif($code == $currency->code)
+        {
+            $currency->rate = $latestData->rates->$code;
+        }
 
     }
 
@@ -87,6 +80,5 @@ function updateCurData ($xml, $base, $config)
 
 //header('Content-Type: text/xml');
 //echo $xml;
-updateCurData($xml, $base, $config);
-updateCurDataAcessed($xml);
+
 ?>

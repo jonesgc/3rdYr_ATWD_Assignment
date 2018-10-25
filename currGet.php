@@ -77,14 +77,17 @@ function convertCur($base, $origin, $target, $amount, $xml)
 
 		if($originVal == 0)
 		{
+            echo $origin;
 			$err[2] =  "From code not found";
 		}
 		elseif($targetVal == 0)
 		{
+            echo $target;
 			$err[2] = "To code not found";
         }
         elseif(($originVal == 0) && ($targetVal))
         {
+            echo "both";
             $err[3] = "Both codes not found";
         }
 		return $err;

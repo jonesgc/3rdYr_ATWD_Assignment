@@ -4,12 +4,12 @@ include_once "config.php";
 include_once "generateError.php";
 include_once "currGet.php";
 include_once "currPost.php";
+include_once "curDataMonitor.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
 
-echo "BITCONNECT";
-
+date_default_timezone_set("UTC");
 
 //Get the exchange rates xml file for use in conversions.
 if (file_exists('curData.xml'))
@@ -28,12 +28,21 @@ else
 //Base currency is declared in the config.php.
 function methodController($method, $query, $base, $xml)
 {
+    //Perform a check on if the xml file has not been updated within 12 hours.
+    $localTime = time();
+    $dataUpdated = $xml->updated->dataUpdated;
+    //43200 is the value in secconds for 12 hours.
+    if(($localTime - $dataUpdated) > 43200)
+    {
+        $URL = $apiLatest . $apiID;
+        updateCurData($xml, $base, $URL);
+        updateCurDataAcessed($xml);
+    }
     //This IF statement differenciates between a delete request and a true POST request. This is a work around, need to find a proper solution.
     if($method == 'POST')
     {
         $headers = getallheaders();
         //print_r($headers);
-        
     } 
     switch ($method)
     {
