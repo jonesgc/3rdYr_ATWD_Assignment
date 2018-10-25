@@ -8,6 +8,7 @@ include_once "currPost.php";
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
 
+echo "BITCONNECT";
 
 
 //Get the exchange rates xml file for use in conversions.
