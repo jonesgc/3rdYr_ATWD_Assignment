@@ -114,17 +114,15 @@ function convertCur($base, $origin, $target, $amount, $xml)
 //Base is declared in config.php.
 function respondGET ($query, $base, $xml)
 {
-
-    //Extract variables from query string, implemented for readability.
-    $params = (explode('&', $query));
-
     //Check if query string is empty.
-
-
-    $origin = $params[0];
-    $target = $params[1];
-    $amount = $params[2];
-    $type = $params[3];
+    if(empty($_GET))
+    {
+        generateError(1000, "XML");
+    }
+    $origin = $_GET['from'];
+    $target = $_GET['to'];
+    $amount = $_GET['amount'];
+    $type = $_GET['type'];
 
     //Validate parameters, checking if codes do not contain numbers and are all caps, and numbers are decimals.
     $oTest = preg_match('/([A-Z])([^a-z])/', $origin);
