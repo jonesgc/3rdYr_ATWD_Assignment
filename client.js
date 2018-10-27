@@ -22,7 +22,7 @@ function query()
                 obj["code"] = document.getElementById('putCurCode').value;
                 obj["fname"] = document.getElementById('putFname').value;
                 obj["rate"] = document.getElementById('putRate').value;
-                obj["countries"] = document.getElementById('putCountries').value;
+                obj["locs"] = document.getElementById('putCountries').value;
 				var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
@@ -114,7 +114,7 @@ function inputControl()
     //This function executes if the put attribute is clicked.
     //Desired visible div is always at the top of each block.
     var radio  = document.querySelector('input[name=actionGroup]:checked').value;
-	
+
     switch (radio)
     {
         case 'GET':

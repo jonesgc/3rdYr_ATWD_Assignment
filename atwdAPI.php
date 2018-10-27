@@ -5,6 +5,7 @@ include_once "generateError.php";
 include_once "currGet.php";
 include_once "currPost.php";
 include_once "curDataMonitor.php";
+include_once "currPut.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
@@ -20,13 +21,11 @@ else
 {
     echo "Cant find currency data file.";
 }
-
-
-
+$URL = $apiLatest . $apiID;
 
 //Swtitch on the method in the request then call the corisponding function.
 //Base currency is declared in the config.php.
-function methodController($method, $query, $base, $xml)
+function methodController($method, $query, $base, $xml, $URL)
 {
     //Perform a check on if the xml file has not been updated within 12 hours.
     $localTime = time();
@@ -34,7 +33,6 @@ function methodController($method, $query, $base, $xml)
     //43200 is the value in secconds for 12 hours.
     if(($localTime - $dataUpdated) > 43200)
     {
-        $URL = $apiLatest . $apiID;
         updateCurData($xml, $base, $URL);
         updateCurDataAcessed($xml);
     }
@@ -43,7 +41,7 @@ function methodController($method, $query, $base, $xml)
     {
         $headers = getallheaders();
         //print_r($headers);
-    } 
+    }
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
@@ -52,34 +50,6 @@ function methodController($method, $query, $base, $xml)
         case 'DELETE': respondDELETE($xml);break;
     }
 }
-
-
-function respondPUT($xml)
-{
-  	//Extract the put data from the php stdin stream.
-	$putdata = json_decode(file_get_contents('php://input', true), true);
-	$code = $putdata['code'];
-	$rate = $putdata['rate'];
-    //Need to do the missing data values: country (comma separated), full name of currency
-
-	//Put the new value in the XML file.
-	$rates = $xml->rates;
-	$cur = $rates->addChild('cur');
-    $code = $cur->addChild('name', $code);
-    $rate = $cur->addChild('rate', $rate);
-
-    //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
-    //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure.
-    $dom = new DOMDocument('1.0');
-    $dom->preserveWhiteSpace = false;
-    $dom->formatOutput = true;
-    $dom->loadXML($xml->asXML());
-
-    $dom->save('curData.xml');
-
-}
-
-
 
 function respondDELETE($xml)
 {
@@ -106,6 +76,6 @@ function respondDELETE($xml)
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);
-methodController($method, $query, $base, $xml);
+methodController($method, $query, $base, $xml, $URL);
 
 ?>
