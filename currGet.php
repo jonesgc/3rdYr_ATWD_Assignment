@@ -3,42 +3,8 @@
 include_once "config.php";
 include_once "generateError.php";
 
-
-
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
-
-
-//Get the XML file containing currency data.
-if (file_exists('config.xml'))
-{
-    $config = simplexml_load_file('config.xml');
-}
-else
-{
-    generateError(1500,"XML");
-}
-
-//----FUNCTIONS----
-
-//This function loops through the XML file finding a match based on the code, it then returns an array with the data for that node.
-//The rate described is the rate vs the base currency.
-function findData($code, $xml)
-{
-    $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0);
-    foreach($xml->rates->cur as $currency)
-            {
-                if($currency->code == $code)
-                {
-                    $node['code'] = $currency->code;
-                    $node['name'] = $currency->name;
-                    $node['loc'] = $currency->loc;
-                    $node['rate'] = $currency->rate;
-                }
-            }
-    return $node;
-}
-
 
 
 //This function converts between the origin currency and the target currency using the base currency as an intermedary.

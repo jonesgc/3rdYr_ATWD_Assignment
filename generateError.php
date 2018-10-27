@@ -33,4 +33,22 @@ function generateError($code, $type="XML")
 //$error = array ("ERROR","1500","Test");
 //generateError($error, $type="XML");
 
+//This function loops through the XML file finding a match based on the code, it then returns an array with the data for that node.
+//The rate described is the rate vs the base currency.
+//This function is included in this file since the inclusion of this file is required in all API files.
+function findData($code, $xml)
+{
+    $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0);
+    foreach($xml->rates->cur as $currency)
+            {
+                if($currency->code == $code)
+                {
+                    $node['code'] = $currency->code;
+                    $node['name'] = $currency->name;
+                    $node['loc'] = $currency->loc;
+                    $node['rate'] = $currency->rate;
+                }
+            }
+    return $node;
+}
 ?>

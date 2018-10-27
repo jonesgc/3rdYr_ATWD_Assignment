@@ -12,7 +12,7 @@ function respondPOST($xml)
 {
     //This is because of the type of data coming from the client, need to handel this.
     $postdata = json_decode(file_get_contents('php://input', true), true);
-    
+
     //Flag variable is used to test if there has been a successful code match.
     $flag = 0;
     //Find code match and update the currency rate.
@@ -22,7 +22,7 @@ function respondPOST($xml)
         $rate = (string)$currency->rate;
 
         if($code == $postdata['code'])
-        {   
+        {
             //Old rate is required for response to client.
             $oldrate = $currency->rate;
             $currency->rate = $postdata['rate'];
@@ -42,9 +42,9 @@ function respondPOST($xml)
         {
             generateError(2400, "XML");
         }
-        
+
     }
-    elseif ((!preg_match('/\./', $postdata['rate'])) || ($postdata['rate'] = "")) 
+    elseif ((!preg_match('/\./', $postdata['rate'])) || ($postdata['rate'] = ""))
     {
         generateError(2100, "XML");
     }
@@ -61,10 +61,14 @@ function respondPOST($xml)
         $name = $node['name'];
         $rate = $node['rate'];
 
+		//Create time and date for when this function was executed.
+		$at = date("d/m/y h:i");
+
+		//Send reponse to client.
         header('Content-Type: text/xml');
         echo '<?xml version="1.0" encoding="UTF-8"?>';
         echo '<method type = "'.$method.'">';
-        echo    '<at></at>';
+        echo    '<at>'.$at.'</at>';
         echo    '<rate>'.$rate.'</rate>';
         echo    '<old_rate>'.$oldrate.'</old_rate>';
         echo    '<curr>';
@@ -74,7 +78,7 @@ function respondPOST($xml)
         echo    '</curr>';
         echo '</method>';
     }
-    
+
 }
-    
+
 ?>

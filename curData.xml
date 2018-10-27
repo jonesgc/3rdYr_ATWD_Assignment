@@ -181,11 +181,5 @@
       <loc>hello,</loc>
       <inactive>TRUE</inactive>
     </cur>
-    <cur>
-      <code>HELLO</code>
-      <fname>TEST</fname>
-      <rate>123.1</rate>
-      <loc>locals,</loc>
-    </cur>
   </rates>
 </currencies>

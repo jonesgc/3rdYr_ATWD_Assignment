@@ -4,10 +4,31 @@ include_once "generateError.php";
 
 //This function quires this api:URL HERE	and checks to see if the code input
 //is valid in the ISO standard.
-function validCurrCheck($code)
+function validCurrCheck($code, $xml)
 {
+$data = json_decode(file_get_contents("https://restcountries.eu/rest/v2/all"),true);
+$validCurr = 0;
+	foreach ($data as $obj)
+	{
 
+    	foreach ($xml->rates->cur as $currency)
+    	{
+        	if($code == $obj["currencies"][0]["code"])
+        	{
+				$validCurr = 1;
+        	}
+    	}
+
+	}
+return $validCurr;
 }
+//Test for above code.
+/*if(validCurrCheck($code, $xml) == 1)
+{
+	echo "Valid!";
+}*/
+
+
 
 function respondPUT($xml)
 {
@@ -18,28 +39,55 @@ function respondPUT($xml)
 	$rate = $putdata['rate'];
 	$locs = $putdata['locs'];
 
-    //Need to do the missing data values: country (comma separated), full name of currency
-
+	//Check if the currency is valid one according to the ISO standard.
+	$isValid = validCurrCheck($code, $xml);
+	//Search XML document for a matching code.
+	$node = findData($code, $xml);
+	if($isValid == 0)
+	{
+		generateError(2400, "XML");
+	}
+	//Check if the currency is already in the XML file.
+	elseif($code == $node['code'])
+	{
+		echo "Code matches one in use.";
+	}
 	//Put the new value in the XML file.
-	$rates = $xml->rates;
-	$cur = $rates->addChild('cur');
-    $code = $cur->addChild('code', $code);
-	$name = $cur->addChild('fname', $name);
-    $rate = $cur->addChild('rate', $rate);
-	$locs = $cur->addChild('loc', $locs);
+	else
+	{
+		$rates = $xml->rates;
+		$cur = $rates->addChild('cur');
+	    $code = $cur->addChild('code', $code);
+		$name = $cur->addChild('fname', $name);
+	    $rate = $cur->addChild('rate', $rate);
+		$locs = $cur->addChild('loc', $locs);
+		$inactive = $cur->addChild('inactive', "FALSE");
 
-    //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
-    //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure.
-    $dom = new DOMDocument('1.0');
-    $dom->preserveWhiteSpace = false;
-    $dom->formatOutput = true;
-    $dom->loadXML($xml->asXML());
+	    //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
+	    //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure.
+	    $dom = new DOMDocument('1.0');
+	    $dom->preserveWhiteSpace = false;
+	    $dom->formatOutput = true;
+	    $dom->loadXML($xml->asXML());
 
-    $dom->save('curData.xml');
+	    $dom->save('curData.xml');
 
+		//Create time and date for when this function was executed.
+		$at = date("d/m/y h:i");
+		//Send Reponse to client.
+		header('Content-Type: text/xml');
+		echo '<?xml version="1.0" encoding="UTF-8"?>';
+		echo '<method type = "put">';
+		echo    '<at>'.$at.'</at>';
+		echo    '<rate>'.$rate.'</rate>';
+		echo    '<curr>';
+		echo        '<code>'.$code.'</code>';
+		echo        '<name>'.$name.'</name>';
+		echo        '<loc>'.$locs.'</loc>';
+		echo    '</curr>';
+		echo '</method>';
+	}
 
-	//Send Reponse to client.
-	
 }
 
 
