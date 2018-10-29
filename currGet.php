@@ -85,7 +85,7 @@ function respondGET ($query, $base, $xml)
     //Check if query string is empty.
     if(empty($_GET))
     {
-        generateError(1000, "XML");
+        generateError(1000);
     }
     $origin = $_GET['from'];
     $target = $_GET['to'];
@@ -101,33 +101,33 @@ function respondGET ($query, $base, $xml)
     {
         if($origin == "")
         {
-            generateError(1000,"XML");
+            generateError(1000);
         }
         else
         {
-            generateError(1100, "XML");
+            generateError(1100);
         }
     }
     elseif(!$tTest)
     {
         if($target == "")
         {
-            generateError(1000,"XML");
+            generateError(1000);
         }
         else
         {
-            generateError(1100, "XML");
+            generateError(1100);
         }
     }
     //Check if either of the other parameters are missing.
     elseif(($amount == "") || ($type == ""))
     {
-        generateError(1000, "XML");
+        generateError(1000);
     }
     //Check response type, must match either XML or JSON.
     elseif(($type != "JSON") && ($type != "XML"))
     {
-        generateError(1400,"XML");
+        generateError(1400);
     }
     //Continue function execution.
     else
@@ -146,8 +146,8 @@ function respondGET ($query, $base, $xml)
         //Catch an error in currency codes being wrong.
         if($result[0] == "ERROR")
         {
-            $err = $result[1];
-            generateError($err, $type);
+            //Result 1 contains the error code.
+            generateError($result[1];);
         }
         elseif($type == 'XML')
         {

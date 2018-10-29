@@ -35,18 +35,18 @@ function respondPOST($xml)
         $test = preg_match('/([A-Z])([^a-z])/', $postdata['code']);
         if(!$test)
         {
-            generateError(2200, "XML");
+            generateError(2200);
         }
         else
         {
-            generateError(2400, "XML");
+            generateError(2400);
         }
 
     }
     elseif ((!preg_match('/([0-9]+)\.{1}([0-9]+)/', $postdata['rate'])) || ($postdata['rate'] = ""))
     {
         //Check if input rate is a decimal.
-        generateError(2100, "XML");
+        generateError(2100);
     }
     else
     {
