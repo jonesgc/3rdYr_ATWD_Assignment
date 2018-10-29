@@ -118,28 +118,28 @@ function inputControl()
     switch (radio)
     {
         case 'GET':
-            document.getElementById('getInput').style.visibility = 'visible';
-            document.getElementById('putInput').style.visibility = 'hidden';
-            document.getElementById('postInput').style.visibility = 'hidden';
-            document.getElementById('deleteInput').style.visibility = 'hidden';
+            document.getElementById('getInput').style = 'float:left';
+            document.getElementById('putInput').style = 'display:none';
+            document.getElementById('postInput').style = 'display:none';
+            document.getElementById('deleteInput').style= 'display:none';
             break;
         case 'PUT':
-            document.getElementById('putInput').style.visibility = 'visible';
-            document.getElementById('getInput').style.visibility = 'hidden';
-            document.getElementById('postInput').style.visibility = 'hidden';
-            document.getElementById('deleteInput').style.visibility = 'hidden';
+            document.getElementById('putInput').style = 'float:left';
+            document.getElementById('getInput').style = 'display:none';
+            document.getElementById('postInput').style = 'display:none';
+            document.getElementById('deleteInput').style = 'display:none';
             break;
         case 'POST':
-            document.getElementById('postInput').style.visibility = 'visible';
-            document.getElementById('getInput').style.visibility = 'hidden';
-            document.getElementById('putInput').style.visibility = 'hidden';
-            document.getElementById('deleteInput').style.visibility = 'hidden';
+            document.getElementById('postInput').style = 'float:left';
+            document.getElementById('getInput').style = 'display:none';
+            document.getElementById('putInput').style = 'display:none';
+            document.getElementById('deleteInput').style = 'display:none';
             break;
         case 'DELETE':
-            document.getElementById('deleteInput').style.visibility = 'visible';
-            document.getElementById('getInput').style.visibility = 'hidden';
-            document.getElementById('postInput').style.visibility = 'hidden';
-            document.getElementById('putInput').style.visibility = 'hidden';
+            document.getElementById('deleteInput').style = 'float:left';
+            document.getElementById('getInput').style = 'display:none';
+            document.getElementById('postInput').style = 'display:none';
+            document.getElementById('putInput').style = 'display:none';
             break;
         default:
             break;

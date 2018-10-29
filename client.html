@@ -3,52 +3,56 @@
         <title>Client Example</title>
         <meta charset="utf-8">
         <script type="text/javascript" src="client.js"></script>
+        <link rel="stylesheet" type="text/css" href="client.css">
     </head>
     <!-- Calling this function on load of the body is required to format the page correctly according to the deafult GET-->
     <body onload="inputControl()">
-        <h1>Client Page</h1>
-        <div id="radioInput">
-            <label id="actionLabel">Action</label>
-            <input id="actionGET" type="radio" name="actionGroup" value="GET" onclick="inputControl()"checked="checked">GET
-            <input id="actionPUT" type="radio" name="actionGroup" value="PUT" onclick="inputControl()">PUT
-            <input id="actionPOST" type="radio" name="actionGroup" value="POST" onclick="inputControl()">POST
-            <input id="actionDEL" type="radio" name="actionGroup" value="DELETE" onclick="inputControl()">DELETE<br>
-        </div>
-        <div id = "getInput">
-            <label id="labelFrom">From</label>
-            <input id="from" type="text">
-            <label id="labelTo">To</label>
-            <input id="to" type="text">
-            <label id="labelAmount">Amount</label>
-            <input id="amount" type="text"><br>
-            <input id="typeXML" type="radio" name="typeGroup" value="XML" checked="checked">XML
-            <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON<br>
-        </div>
-        <div id = "putInput">
-            <label id = "labelPutCurCode">Currency Code</label>
-            <input id = "putCurCode" type = "text">
-            <label id = "labelPutFname">Currency Name</label>
-            <input id = "putFname" type = "text">
-            <label id = "labelPutRate">Rate</label>
-            <input id = "putRate" type = "text">
-            <label id = "labelPutCountries">Countries (Comma separated if more than one)</label>
-            <input id = "putCountries" type = "text">
-        </div>
-        <div id = "postInput">
-            <label id = "labelPostCurCode">Currency Code</label>
-            <input id = "postCurCode" type = "text">
-            <label id = "labelPostRate">Rate</label>
-            <input id = "postRate" type = "text">
-        </div>
-        <div id = "deleteInput">
-            <label id = "labelDeleteCode">Code to be deleted</label>
-            <input id = "deleteCode" type = "text">
-        </div>
-        <div id = "submit">
-            <button id="submitRequest" onclick="query()">Submit</button>
-        </div>
-        <div id = "response">
-            <textarea id="responseTextArea" rows ="50" cols ="50"></textarea>
+        <div id="divAlign">
+                <h1 id = "h1Title" class="item">Client Page</h1>
+                <div id="radioInput" class="item">
+                    <label id="actionLabel">Action</label>
+                    <input id="actionGET" type="radio" name="actionGroup" value="GET" onclick="inputControl()"checked="checked">GET
+                    <input id="actionPUT" type="radio" name="actionGroup" value="PUT" onclick="inputControl()">PUT
+                    <input id="actionPOST" type="radio" name="actionGroup" value="POST" onclick="inputControl()">POST
+                    <input id="actionDEL" type="radio" name="actionGroup" value="DELETE" onclick="inputControl()">DELETE<br>
+                </div>
+                <div id = "getInput" class="item">
+                    <label id="labelFrom">From</label>
+                    <input id="from" type="text">
+                    <label id="labelTo">To</label>
+                    <input id="to" type="text">
+                    <label id="labelAmount">Amount</label>
+                    <input id="amount" type="text"><br>
+                    <input id="typeXML" type="radio" name="typeGroup" value="XML" checked="checked">XML
+                    <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON
+                </div>
+                <div id = "putInput" class="item">
+                    <label id = "labelPutCurCode">Currency Code</label>
+                    <input id = "putCurCode" type = "text">
+                    <label id = "labelPutFname">Currency Name</label>
+                    <input id = "putFname" type = "text">
+                    <label id = "labelPutRate">Rate</label>
+                    <input id = "putRate" type = "text">
+                    <label id = "labelPutCountries">Countries (Comma separated if more than one)</label>
+                    <input id = "putCountries" type = "text">
+                </div>
+                <div id = "postInput" class="item">
+                    <label id = "labelPostCurCode">Currency Code</label>
+                    <input id = "postCurCode" type = "text">
+                    <label id = "labelPostRate">Rate</label>
+                    <input id = "postRate" type = "text">
+                </div>
+                <div id = "deleteInput" class="item">
+                    <label id = "labelDeleteCode">Code to be deleted</label>
+                    <input id = "deleteCode" type = "text">
+                </div>
+                <div id = "submit" class="item">
+                    <button id="submitRequest" onclick="query()">Submit</button>
+                </div>
+                <div id = "response" class="item">
+                    <br>
+                    <textarea id="responseTextArea" rows ="50" cols ="50"></textarea>
+                </div>
         </div>
     </body>
 </html>
