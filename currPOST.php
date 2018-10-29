@@ -2,8 +2,7 @@
 
 include_once "config.php";
 include_once "generateError.php";
-//currGet is required since for the findData function.
-include_once "currGet.php";
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
@@ -24,12 +23,12 @@ function respondPOST($xml)
         if($code == $postdata['code'])
         {
             //Old rate is required for response to client.
-            $oldrate = $currency->rate;
+            define('oldrate', $currency->rate);
             $currency->rate = $postdata['rate'];
             $flag = 1;
         }
     }
-
+    
     if($flag == 0)
     {
         //Check if code input was correct format.
@@ -44,8 +43,9 @@ function respondPOST($xml)
         }
 
     }
-    elseif ((!preg_match('/\./', $postdata['rate'])) || ($postdata['rate'] = ""))
+    elseif ((!preg_match('/([0-9]+)\.{1}([0-9]+)/', $postdata['rate'])) || ($postdata['rate'] = ""))
     {
+        //Check if input rate is a decimal.
         generateError(2100, "XML");
     }
     else
@@ -70,7 +70,7 @@ function respondPOST($xml)
         echo '<method type = "'.$method.'">';
         echo    '<at>'.$at.'</at>';
         echo    '<rate>'.$rate.'</rate>';
-        echo    '<old_rate>'.$oldrate.'</old_rate>';
+        echo    '<old_rate>'.constant('oldrate').'</old_rate>';
         echo    '<curr>';
         echo        '<code>'.$code.'</code>';
         echo        '<name>'.$name.'</name>';

@@ -41,6 +41,7 @@ function respondPUT($xml)
 
 	//Check if the currency is valid one according to the ISO standard.
 	$isValid = validCurrCheck($code, $xml);
+	
 	//Search XML document for a matching code.
 	$node = findData($code, $xml);
 	if($isValid == 0)
