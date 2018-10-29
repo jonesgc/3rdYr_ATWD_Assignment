@@ -67,7 +67,9 @@ function convertCur($base, $origin, $target, $amount, $xml)
 	else
 	{
 		//Perform the conversion, using the base currency as a "stepping stone"
-	    $newAmount = ($amount / $originVal) * $targetVal;
+        $newAmount = ($amount / $originVal) * $targetVal;
+        //Format the number to 4 digits after the decimal.
+        $newAmount = number_format($newAmount, 4, '.', '');
 	    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
 	    return $result;
