@@ -17,4 +17,6 @@ $errorHash = array(1000=>"Required parameter is missing",
     2400 => "Currency code not found for update",
     2500 => "Error in service");
 $GLOBALS['errorHash'] = $errorHash;
+$errorType = "XML";
+$GLOBALS['errorType'] = $errorType;
 ?>

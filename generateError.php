@@ -5,22 +5,22 @@ include_once 'config.php';
 //The code will generate an error string, which would be the error code it wants to throw.
 //Note the errorHash global used in this function is found in config.php
 
-function generateError($code, $type="XML")
+function generateError($code)
 {
-    if($type == "XML")
+    if($GLOBALS['errorType'] == "XML")
     {
         header('Content-Type: text/xml');
         echo '<?xml version="1.0" encoding="UTF-8"?>';
-        echo '<method type="'. $type.'">';
+        echo '<method type="XML">';
         echo "<error>";
         echo "<code>".$code."</code>";
         echo "<msg>". $GLOBALS['errorHash'][$code]."</msg>";
         echo "</error>";
         echo "</method>";
     }
-    elseif($type == "JSON")
+    elseif($GLOBALS['errorType'] == "JSON")
     {
-        $res = array('method'=>$type, 'code'=>$code,'message'=>$GLOBALS['errorHash'][$code]);
+        $res = array('method'=>'JSON', 'code'=>$code,'message'=>$GLOBALS['errorHash'][$code]);
         $res = json_encode($res);
         print_r($res);
     }

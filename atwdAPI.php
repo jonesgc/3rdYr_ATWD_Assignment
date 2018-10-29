@@ -6,6 +6,7 @@ include_once "currGet.php";
 include_once "currPost.php";
 include_once "curDataMonitor.php";
 include_once "currPut.php";
+include_once "currDelete.php";
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
@@ -36,10 +37,18 @@ function methodController($method, $query, $base, $xml, $URL)
         updateCurData($xml, $base, $URL);
         updateCurDataAcessed($xml);
     }
-    //This IF statement differenciates between a delete request and a true POST request. This is a work around, need to find a proper solution.
+    
+    //This IF statement differenciates between a delete request and a true POST request.
     if($method == 'POST')
     {
         $headers = getallheaders();
+        foreach($headers as $header)
+        {
+            if($header == 'DELETE')
+            {
+                $method = 'DELETE';
+            }
+        }
         //print_r($headers);
     }
     switch ($method)
@@ -49,30 +58,6 @@ function methodController($method, $query, $base, $xml, $URL)
         case 'POST': respondPOST($xml);break;
         case 'DELETE': respondDELETE($xml);break;
     }
-}
-
-function respondDELETE($xml)
-{
-    $code = file_get_contents('php://input', true);
-
-    //Iterate through XML looking for code, then set the inative flag to TRUE.
-    foreach ($xml->rates->cur as $currency)
-    {
-        $code = (string)$currency->name;
-        $rate = (string)$currency->rate;
-
-        if($code == $code)
-        {
-            $currency->inactive = "TRUE";
-
-			if($currency->inactive == "TRUE")
-			{
-				echo "Currency is already inactive.";
-			}
-        }
-    }
-
-    file_put_contents('curData.xml', $xml->asxml());
 }
 
 //echo convertCur($base, $origin, $target, $amount,$xml);
