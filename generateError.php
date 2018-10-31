@@ -38,7 +38,7 @@ function generateError($code)
 //This function is included in this file since the inclusion of this file is required in all API files.
 function findData($code, $xml)
 {
-    $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0);
+    $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0, 'inactive'=>"");
     foreach($xml->rates->cur as $currency)
             {
                 if($currency->code == $code)
@@ -47,6 +47,7 @@ function findData($code, $xml)
                     $node['name'] = $currency->name;
                     $node['loc'] = $currency->loc;
                     $node['rate'] = $currency->rate;
+                    $node['inactive'] = $currency->inactive;
                 }
             }
     return $node;

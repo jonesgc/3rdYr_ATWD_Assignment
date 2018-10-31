@@ -25,6 +25,7 @@ function respondPOST($xml)
             //Old rate is required for response to client.
             define('oldrate', $currency->rate);
             $currency->rate = $postdata['rate'];
+            $inactive = $currency->inactive;
             $flag = 1;
         }
     }
@@ -47,6 +48,11 @@ function respondPOST($xml)
     {
         //Check if input rate is a decimal.
         generateError(2100);
+    }
+    //Check if currency is active.
+    elseif($inactive == "TRUE")
+    {
+        generateError(2500);
     }
     else
     {

@@ -142,12 +142,16 @@ function respondGET ($query, $base, $xml)
         $tDat = findData($target, $xml);
         $tCurrName = $tDat['name'];
         $tLocs = $tDat['loc'];
-
         //Catch an error in currency codes being wrong.
         if($result[0] == "ERROR")
         {
             //Result 1 contains the error code.
-            generateError($result[1];);
+            generateError($result[1]);
+        }
+        //If either the target or origin currency is listed as inactive generate an error.
+        elseif(($oDat['inactive'] == "TRUE") || ($tDat['inactive'] == "TRUE"))
+        {
+            generateError(1500);
         }
         elseif($type == 'XML')
         {
