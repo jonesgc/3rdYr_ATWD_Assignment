@@ -156,17 +156,15 @@ function respondGET ($query, $base, $xml)
         elseif($type == 'XML')
         {
            //Find the get response XML template.
-           if (file_exists('curData.xml'))
+           if (file_exists('templates/getResXML.xml'))
            {
-               $res = simplexml_load_file('getResXML.xml');
-
-               $res->conv->at = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
-
+               $res = simplexml_load_file('templates/getResXML.xml');
+               $res->at = date("d M y h:i", (int)$xml->updated->dataUpdated);
+               $res->rate = $result[1];
 
                //Origin or from return values input into response xml.
                $res->from->code = $origin;
                $res->from->curr = $oCurrName;
-               $res->from->rate = $result[1];
                $res->from->loc = $oLocs;
                $res->from->amnt = $amount;
                //Target or to values input into response xml.
@@ -176,38 +174,48 @@ function respondGET ($query, $base, $xml)
                $res->to->loc = $tLocs;
 
                //Send response to server.
+               header('Content-Type: text/xml');
                echo $res->asxml();
            }
            else
            {
-               //Error
-               echo "Cant find get response template";
+               //Error, cant find the template.
+               generateError(1500);
            }
        }
        elseif($type == 'JSON')
        {
            //Need to insert try catch.
-           $res = json_decode(file_get_contents('getResJSON.json'), true);
+           if(file_exists('templates/getResJSON.json'))
+           {
+                $res = json_decode(file_get_contents('templates/getResJSON.json'), true);
 
-           $res['conv']['at'] = date("d/m/y \ h:i", (int)$xml->updated->dataUpdated);
-           $res['conv']['rate'] = $result[1];
+                $res['conv']['at'] = date("d M y \ h:i", (int)$xml->updated->dataUpdated);
+                $res['conv']['rate'] = $result[1];
 
-           //Input origin or from response values into JSON.
-           $res['conv']['from']['code'] = $origin;
-           $res['conv']['from']['curr'] = $oCurrName;
-           $res['conv']['from']['loc'] = $oLocs;
-           $res['conv']['from']['amnt' ]= $amount;
+                //Input origin or from response values into JSON.
+                $res['conv']['from']['code'] = $origin;
+                $res['conv']['from']['curr'] = $oCurrName;
+                $res['conv']['from']['loc'] = $oLocs;
+                $res['conv']['from']['amnt' ]= $amount;
 
-           //Input target or to response values into JSON.
-           $res['conv']['to']['code'] = $target;
-           $res['conv']['to']['curr'] = $tCurrName;
-           $res['conv']['to']['loc'] = $tLocs;
-           $res['conv']['to']['amnt'] = $result[5];
+                //Input target or to response values into JSON.
+                $res['conv']['to']['code'] = $target;
+                $res['conv']['to']['curr'] = $tCurrName;
+                $res['conv']['to']['loc'] = $tLocs;
+                $res['conv']['to']['amnt'] = $result[5];
 
-           $res = json_encode($res);
+                $res = json_encode($res);
 
-           //Send response to client.
-           echo $res;
+                //Send response to client.
+                echo $res;
+            }
+            else
+            {
+                //Cant find the template.
+                generateError(1500);
+            }
+           
        }
     }
 

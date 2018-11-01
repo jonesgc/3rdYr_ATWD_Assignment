@@ -16,13 +16,14 @@ function query()
                 break;
 
             case 'PUT':
-				var obj = {"code":"", "fname":"", "rate":"", "countries":""};
+				var obj = {"code":"", "fname":"", "rate":"", "countries":"", "type":""};
                 //var code = document.getElementById('from').value;
                 //var amount = document.getElementById('amount').value;
                 obj["code"] = document.getElementById('putCurCode').value;
                 obj["fname"] = document.getElementById('putFname').value;
                 obj["rate"] = document.getElementById('putRate').value;
                 obj["locs"] = document.getElementById('putCountries').value;
+                obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
 				var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
@@ -30,15 +31,18 @@ function query()
             case 'POST':
                 //Need to be careful when using JSON in post as it causes an extra step to be needed on server side.
                 //Best to create an alternative.
-                var obj = {"code":"", "rate":""};
+                var obj = {"code":"", "rate":"", "type":""};
                 obj["code"] = document.getElementById('postCurCode').value;
                 obj["rate"] = document.getElementById('postRate').value;
+                obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
                 var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
 
             case 'DELETE':
-                param = document.getElementById("deleteCode").value;
+                var obj = {"code":"","type":""};
+                obj["code"] = document.getElementById("deleteCode").value;
+                obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
                 url = "atwdAPI.php";
                 break;
 

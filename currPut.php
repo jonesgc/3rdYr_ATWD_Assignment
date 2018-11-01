@@ -7,15 +7,19 @@ include_once "generateError.php";
 function validCurrCheck($code, $xml)
 {
 $data = json_decode(file_get_contents("https://restcountries.eu/rest/v2/all"),true);
-$validCurr = 0;
+$validCurr = array("currName"=>"", "locs"=>"");
 	foreach ($data as $obj)
 	{
-
+		if($obj["currencies"][0]["code"] == $code)
+		{
+			$validCurr = $validCurr . $obj["currencies"];
+		}
     	foreach ($xml->rates->cur as $currency)
     	{
         	if($code == $obj["currencies"][0]["code"])
         	{
-				$validCurr = 1;
+				$validCurr["currName"] = $obj["currencies"][0]["name"];
+				//Need to do locations.
         	}
     	}
 
@@ -76,17 +80,15 @@ function respondPUT($xml)
 		//Create time and date for when this function was executed.
 		$at = date("d/m/y h:i");
 		//Send Reponse to client.
-		header('Content-Type: text/xml');
-		echo '<?xml version="1.0" encoding="UTF-8"?>';
-		echo '<method type = "put">';
-		echo    '<at>'.$at.'</at>';
-		echo    '<rate>'.$rate.'</rate>';
-		echo    '<curr>';
-		echo        '<code>'.$code.'</code>';
-		echo        '<name>'.$name.'</name>';
-		echo        '<loc>'.$locs.'</loc>';
-		echo    '</curr>';
-		echo '</method>';
+		if($type == "XML")
+		{
+			header('Content-Type: text/xml');
+		}
+		elseif($type == "JSON")
+		{
+
+		}
+		
 	}
 
 }

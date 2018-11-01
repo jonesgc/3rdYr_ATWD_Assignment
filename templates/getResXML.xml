@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <conv>
     <at></at>
+    <rate></rate>
     <from>
         <code></code>
         <curr></curr>
-        <rate></rate>
         <loc></loc>
         <amnt></amnt>
     </from>

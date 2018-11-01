@@ -16,6 +16,10 @@
                     <input id="actionPOST" type="radio" name="actionGroup" value="POST" onclick="inputControl()">POST
                     <input id="actionDEL" type="radio" name="actionGroup" value="DELETE" onclick="inputControl()">DELETE<br>
                 </div>
+                <div id="actionInput">
+                    <input id="typeXML" type="radio" name="typeGroup" value="XML" checked="checked">XML
+                    <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON
+                </div>
                 <div id = "getInput" class="item">
                     <label id="labelFrom">From</label>
                     <input id="from" type="text">
@@ -23,18 +27,12 @@
                     <input id="to" type="text">
                     <label id="labelAmount">Amount</label>
                     <input id="amount" type="text"><br>
-                    <input id="typeXML" type="radio" name="typeGroup" value="XML" checked="checked">XML
-                    <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON
                 </div>
                 <div id = "putInput" class="item">
                     <label id = "labelPutCurCode">Currency Code</label>
                     <input id = "putCurCode" type = "text">
-                    <label id = "labelPutFname">Currency Name</label>
-                    <input id = "putFname" type = "text">
                     <label id = "labelPutRate">Rate</label>
                     <input id = "putRate" type = "text">
-                    <label id = "labelPutCountries">Countries (Comma separated if more than one)</label>
-                    <input id = "putCountries" type = "text">
                 </div>
                 <div id = "postInput" class="item">
                     <label id = "labelPostCurCode">Currency Code</label>
