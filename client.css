@@ -1,7 +1,8 @@
 body
 {
-    font-family: 'Aspira', 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
-    background-color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif;
+    color: white;
+    background-color: #383633;
 }
 
 #container
@@ -21,14 +22,14 @@ body
 #h1Title
 {
     font-size: 3em;
-    color: black;
+    color: #ed881c;
 }
 
 #submitRequest
 {
     border: none;
-    background-color: white;
-    color: black;
+    background-color: #1b7c71;
+    color: white;
     padding: 1em, 2em;
     text-align: center;
     font-size: 2em;
@@ -38,5 +39,6 @@ body
 #responseTextArea
 {
     border-radius: 4px;
-    border: solid 3px whitesmoke;
+    border: solid 3px #828180;
+    background-color: #595651;
 }
