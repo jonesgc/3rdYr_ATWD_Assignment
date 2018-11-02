@@ -44,6 +44,7 @@ function query()
                 obj["code"] = document.getElementById("deleteCode").value;
                 var type = document.querySelector('input[name=typeGroup]:checked').value;
                 obj["type"] = type;
+                var param = JSON.stringify(obj);
                 url = "atwdAPI.php";
                 break;
 
@@ -90,7 +91,6 @@ function query()
     }
     else if(action === 'DELETE')
     {
-        console.log("Hello");
         var delReq = new XMLHttpRequest();
         delReq.open("POST", url, true);
         delReq.onreadystatechange = function ()

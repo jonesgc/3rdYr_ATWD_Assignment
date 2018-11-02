@@ -4,7 +4,10 @@ include_once "generateError.php";
 
 function respondDELETE($xml)
 {
-    $code = file_get_contents('php://input', true);
+    $data = json_decode(file_get_contents('php://input', true), true);
+
+    $code = $data['code'];
+    $type = $data['type'];
 
     $node = findData($code, $xml);
     
@@ -25,21 +28,55 @@ function respondDELETE($xml)
             {
 			    if($currency->inactive == "TRUE")
 			    {
-				    echo "Currency is already inactive.";
+				    generateError(2400);
                 }
-                $currency->inactive = "FALSE";
+                else
+                {
+                    $currency->inactive = "TRUE";
+                }
             }
         }
+
     $at = date('d/m/y h:i');
     
     //Send response to client.
-    header('Content-Type: text/xml');
-    echo '<?xml version="1.0" encoding="UTF-8"?>';
-    echo '<method type = "DELETE">';
-    echo    '<at>'.$at.'</at>';
-    echo    '<code>'.$code.'</code>';
-    echo '</method>';
+    if($type == "XML")
+		{
+			
+			if (file_exists('templates/delResXML.xml'))
+			{
+				
+				$res = simplexml_load_file('templates/delResXML.xml');
+				$res->at = date("d M y  h:i");
+				$res->code = $code;
 
+				header('Content-Type: text/xml');
+				echo $res->asxml();
+			}
+			else
+			{
+				generateError(2500);
+			}
+		}
+		elseif($type == "JSON")
+		{
+			if (file_exists('templates/delResJSON.json'))
+			{
+				$res = json_decode(file_get_contents('templates/delResJSON.json'), true);
+
+				$res['delete']['at'] = date("d M y \ h:i");
+                $res['delete']['code'] = $code;
+                
+				$res = json_encode($res);
+
+				echo $res;
+			}
+			else
+			{
+				generateError(2500);
+			}
+        }
+        
     //Save the changes to the xml file, other functions of the api will check if the inactive flag and act accordingly.
     //This prevents the actual deletion of any data.
     file_put_contents('curData.xml', $xml->asxml());

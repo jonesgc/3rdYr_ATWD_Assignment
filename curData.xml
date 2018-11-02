@@ -179,7 +179,7 @@
       <name>TEST</name>
       <rate>4444.1</rate>
       <loc>hello,</loc>
-      <inactive>FALSE</inactive>
+      <inactive>TRUE</inactive>
     </cur>
   </rates>
 </currencies>
