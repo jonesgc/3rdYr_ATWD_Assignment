@@ -8,29 +8,25 @@ function validCurrCheck($code, $xml)
 {
 $data = json_decode(file_get_contents("https://restcountries.eu/rest/v2/all"),true);
 $validCurr = array("currName"=>"", "locs"=>"");
+
 	foreach ($data as $obj)
 	{
 		if($obj["currencies"][0]["code"] == $code)
 		{
-			$validCurr = $validCurr . $obj["currencies"];
+			$validCurr["locs"] = $validCurr["locs"] . $obj["name"] . ",";
 		}
+
     	foreach ($xml->rates->cur as $currency)
     	{
         	if($code == $obj["currencies"][0]["code"])
         	{
 				$validCurr["currName"] = $obj["currencies"][0]["name"];
-				//Need to do locations.
         	}
     	}
 
 	}
 return $validCurr;
 }
-//Test for above code.
-/*if(validCurrCheck($code, $xml) == 1)
-{
-	echo "Valid!";
-}*/
 
 
 
@@ -39,16 +35,20 @@ function respondPUT($xml)
   	//Extract the put data from the php stdin stream.
 	$putdata = json_decode(file_get_contents('php://input', true), true);
 	$code = $putdata['code'];
-	$name = $putdata['fname'];
 	$rate = $putdata['rate'];
-	$locs = $putdata['locs'];
-
+	$type = $putdata['type'];
 	//Check if the currency is valid one according to the ISO standard.
 	$isValid = validCurrCheck($code, $xml);
 
+	//The rest of the data needed to complete the node is returned from validCurrCheck, such as full name of the currency and the locations.
+	$name = $isValid['currName'];
+	$locs = $isValid['locs'];
+
 	//Search XML document for a matching code.
 	$node = findData($code, $xml);
-	if($isValid == 0)
+
+	//If $isValid is empty that means that the code entered was not a valid code according to the ISO standard.
+	if($isValid == empty($isValid))
 	{
 		generateError(2400);
 	}
@@ -62,10 +62,10 @@ function respondPUT($xml)
 	{
 		$rates = $xml->rates;
 		$cur = $rates->addChild('cur');
-	    $code = $cur->addChild('code', $code);
-		$name = $cur->addChild('fname', $name);
-	    $rate = $cur->addChild('rate', $rate);
-		$locs = $cur->addChild('loc', $locs);
+	    $curCode = $cur->addChild('code', $code);
+		$curName = $cur->addChild('fname', $name);
+	    $curRate = $cur->addChild('rate', $rate);
+		$curLocs = $cur->addChild('loc', $locs);
 		$inactive = $cur->addChild('inactive', "FALSE");
 
 	    //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
@@ -79,14 +79,49 @@ function respondPUT($xml)
 
 		//Create time and date for when this function was executed.
 		$at = date("d/m/y h:i");
+
 		//Send Reponse to client.
 		if($type == "XML")
 		{
-			header('Content-Type: text/xml');
+			
+			if (file_exists('templates/putResXML.xml'))
+			{
+				
+				$res = simplexml_load_file('templates/putResXML.xml');
+				$res->at = date("d M y  h:i");
+				$res->curr->code = $code;
+				$res->curr->name = $name;
+				$res->curr->loc = $locs;
+				$res->curr->rate = $rate;
+
+				header('Content-Type: text/xml');
+				echo $res->asxml();
+			}
+			else
+			{
+				generateError(2500);
+			}
 		}
 		elseif($type == "JSON")
 		{
+			if (file_exists('templates/putResJSON.json'))
+			{
+				$res = json_decode(file_get_contents('templates/putResJSON.json'), true);
 
+				$res['put']['at'] = date("d M y \ h:i");
+				$res['put']['curr']['code'] = $code;
+				$res['put']['curr']['currName'] = $name;
+				$res['put']['curr']['loc'] = $locs;
+				$res['put']['curr']['rate'] = $rate;
+
+				$res = json_encode($res);
+
+				echo $res;
+			}
+			else
+			{
+				generateError(2500);
+			}
 		}
 		
 	}

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <method type = "put">
     <at></at>
-	<rate></rate>
 	<curr>
 		<code></code>
 		<name></name>
 		<loc></loc>
+		<rate></rate>
 	</curr>
 </method>

@@ -16,13 +16,11 @@ function query()
                 break;
 
             case 'PUT':
-				var obj = {"code":"", "fname":"", "rate":"", "countries":"", "type":""};
+				var obj = {"code":"", "rate":"", "type":""};
                 //var code = document.getElementById('from').value;
                 //var amount = document.getElementById('amount').value;
                 obj["code"] = document.getElementById('putCurCode').value;
-                obj["fname"] = document.getElementById('putFname').value;
                 obj["rate"] = document.getElementById('putRate').value;
-                obj["locs"] = document.getElementById('putCountries').value;
                 obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
 				var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
@@ -62,21 +60,18 @@ function query()
     {
       if (this.readyState == 4 && this.status == 200)
       {
-		  if(action === 'GET')
-		  {
-			  console.log(this.responseText.toString());
-	          document.getElementById('responseTextArea').value = this.responseText;
-		  }
-		  else if (action === 'PUT')
-		  {
-              console.log(this.responseText.toString());
-              document.getElementById('responseTextArea').value = this.responseText;
-          }
-          else if (action === 'POST')
-          {
-              console.log(this.responseText.toString());
-              document.getElementById('responseTextArea').value = this.responseText;
-          }
+        if(type === "XML")
+        {
+            console.log(this.responseText.toString());
+            document.getElementById('responseTextArea').value = this.responseText;
+        }
+        else
+        {
+            var jsonStr = this.responseText;
+            var jsonPP = JSON.stringify(JSON.parse(jsonStr), null, 2);
+            document.getElementById('responseTextArea').value = jsonPP;
+        }
+       
       }
     };
 
