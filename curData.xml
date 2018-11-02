@@ -177,15 +177,8 @@
     <cur>
       <code>TEST</code>
       <name>TEST</name>
-      <rate>123.1</rate>
+      <rate>4444.1</rate>
       <loc>hello,</loc>
-      <inactive>TRUE</inactive>
-    </cur>
-    <cur>
-      <code>AFN</code>
-      <fname>Afghan afghani</fname>
-      <rate>123.1</rate>
-      <loc>Afghanistan,</loc>
       <inactive>FALSE</inactive>
     </cur>
   </rates>

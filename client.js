@@ -21,7 +21,8 @@ function query()
                 //var amount = document.getElementById('amount').value;
                 obj["code"] = document.getElementById('putCurCode').value;
                 obj["rate"] = document.getElementById('putRate').value;
-                obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
+                var type = document.querySelector('input[name=typeGroup]:checked').value;
+                obj["type"] = type;
 				var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
@@ -32,7 +33,8 @@ function query()
                 var obj = {"code":"", "rate":"", "type":""};
                 obj["code"] = document.getElementById('postCurCode').value;
                 obj["rate"] = document.getElementById('postRate').value;
-                obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
+                var type = document.querySelector('input[name=typeGroup]:checked').value;
+                obj["type"] = type;
                 var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
@@ -40,7 +42,8 @@ function query()
             case 'DELETE':
                 var obj = {"code":"","type":""};
                 obj["code"] = document.getElementById("deleteCode").value;
-                obj["type"] = document.querySelector('input[name=typeGroup]:checked').value;
+                var type = document.querySelector('input[name=typeGroup]:checked').value;
+                obj["type"] = type;
                 url = "atwdAPI.php";
                 break;
 
@@ -65,7 +68,7 @@ function query()
             console.log(this.responseText.toString());
             document.getElementById('responseTextArea').value = this.responseText;
         }
-        else
+        else if(type === "JSON")
         {
             var jsonStr = this.responseText;
             var jsonPP = JSON.stringify(JSON.parse(jsonStr), null, 2);

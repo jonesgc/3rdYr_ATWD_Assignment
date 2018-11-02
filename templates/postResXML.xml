@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<method type = "POST">
+    <at></at>
+    <rate></rate>
+    <old_rate></old_rate>
+    <curr>
+        <code></code>
+        <name></name>
+        <loc></loc>
+    </curr>
+</method>

@@ -11,6 +11,7 @@ function respondPOST($xml)
 {
     //This is because of the type of data coming from the client, need to handel this.
     $postdata = json_decode(file_get_contents('php://input', true), true);
+    $type = $postdata['type'];
 
     //Flag variable is used to test if there has been a successful code match.
     $flag = 0;
@@ -68,21 +69,55 @@ function respondPOST($xml)
         $rate = $node['rate'];
 
 		//Create time and date for when this function was executed.
-		$at = date("d/m/y h:i");
+		$at = date("d M y  h:i");
 
-		//Send reponse to client.
-        header('Content-Type: text/xml');
-        echo '<?xml version="1.0" encoding="UTF-8"?>';
-        echo '<method type = "'.$method.'">';
-        echo    '<at>'.$at.'</at>';
-        echo    '<rate>'.$rate.'</rate>';
-        echo    '<old_rate>'.constant('oldrate').'</old_rate>';
-        echo    '<curr>';
-        echo        '<code>'.$code.'</code>';
-        echo        '<name>'.$name.'</name>';
-        echo        '<loc>'.$locs.'</loc>';
-        echo    '</curr>';
-        echo '</method>';
+
+        if($type == 'XML')
+        {
+            if (file_exists('templates/postResXML.xml'))
+			{
+                $res = simplexml_load_file('templates/postResXML.xml');
+                $res->at = $at;
+                $res->old_rate = constant('oldrate');
+                $res->rate = $rate;
+				$res->curr->code = $code;
+				$res->curr->name = $name;
+				$res->curr->loc = $locs;
+				
+				header('Content-Type: text/xml');
+				echo $res->asxml();
+			}
+			else
+			{
+				generateError(2500);
+			}
+        }
+        elseif($type == 'JSON')
+        {   
+            if (file_exists('templates/postResJSON.json'))
+			{
+				$res = json_decode(file_get_contents('templates/postResJSON.json'), true);
+
+                $res['post']['at'] = date("d M y \ h:i");
+                $res['post']['old_rate'] = constant('oldrate');
+                $res['post']['rate'] = $rate;
+				$res['post']['curr']['code'] = $code;
+				$res['post']['curr']['currName'] = $name;
+				$res['post']['curr']['loc'] = $locs;
+
+				$res = json_encode($res);
+
+				echo $res;
+			}
+			else
+			{
+				generateError(2500);
+			}
+        }
+        else
+        {
+            generateError(2500);
+        }
     }
 
 }
