@@ -3,7 +3,7 @@
 include_once "config.php";
 include_once "generateError.php";
 include_once "currGet.php";
-include_once "currPost.php";
+include_once "currPOST.php";
 include_once "curDataMonitor.php";
 include_once "currPut.php";
 include_once "currDelete.php";

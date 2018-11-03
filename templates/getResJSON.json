@@ -1,17 +1,17 @@
 {"conv":{
-        "at":0,
-        "rate":0,
+        "at":"",
+        "rate":"",
         "from":{
-            "code":0,
-            "curr":0,
-            "loc":0,
-            "amnt":0
+            "code":"",
+            "curr":"",
+            "loc":"",
+            "amnt":""
         },
         "to":{
-            "code":0,
-            "curr":0,
-            "loc":0,
-            "amnt":0
+            "code":"",
+            "curr":"",
+            "loc":"",
+            "amnt":""
         }
     }
 

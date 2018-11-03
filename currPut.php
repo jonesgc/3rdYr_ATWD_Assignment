@@ -55,7 +55,7 @@ function respondPUT($xml)
 	//Check if the currency is already in the XML file.
 	elseif($code == $node['code'])
 	{
-		echo "Code matches one in use.";
+		generateError(2500);
 	}
 	//Put the new value in the XML file.
 	else
@@ -109,10 +109,10 @@ function respondPUT($xml)
 				$res = json_decode(file_get_contents('templates/putResJSON.json'), true);
 
 				$res['put']['at'] = date("d M y \ h:i");
-				$res['put']['curr']['code'] = $code;
-				$res['put']['curr']['currName'] = $name;
-				$res['put']['curr']['loc'] = $locs;
-				$res['put']['curr']['rate'] = $rate;
+				$res['put']['curr']['code'] = (string)$code;
+				$res['put']['curr']['currName'] = (string)$name;
+				$res['put']['curr']['loc'] = (string)$locs;
+				$res['put']['curr']['rate'] = (string)$rate;
 
 				$res = json_encode($res);
 

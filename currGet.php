@@ -191,19 +191,19 @@ function respondGET ($query, $base, $xml)
                 $res = json_decode(file_get_contents('templates/getResJSON.json'), true);
 
                 $res['conv']['at'] = date("d M y \ h:i", (int)$xml->updated->dataUpdated);
-                $res['conv']['rate'] = $result[1];
+                $res['conv']['rate'] = (string)$result[1];
 
                 //Input origin or from response values into JSON.
-                $res['conv']['from']['code'] = $origin;
-                $res['conv']['from']['curr'] = $oCurrName;
-                $res['conv']['from']['loc'] = $oLocs;
-                $res['conv']['from']['amnt' ]= $amount;
+                $res['conv']['from']['code'] = (string)$origin;
+                $res['conv']['from']['curr'] = (string)$oCurrName;
+                $res['conv']['from']['loc'] = (string)$oLocs;
+                $res['conv']['from']['amnt' ]= (string)$amount;
 
                 //Input target or to response values into JSON.
-                $res['conv']['to']['code'] = $target;
-                $res['conv']['to']['curr'] = $tCurrName;
-                $res['conv']['to']['loc'] = $tLocs;
-                $res['conv']['to']['amnt'] = $result[5];
+                $res['conv']['to']['code'] = (string)$target;
+                $res['conv']['to']['curr'] = (string)$tCurrName;
+                $res['conv']['to']['loc'] = (string)$tLocs;
+                $res['conv']['to']['amnt'] = (string)$result[5];
 
                 $res = json_encode($res);
 
