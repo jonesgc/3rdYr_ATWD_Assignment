@@ -100,10 +100,10 @@ function respondPOST($xml)
 
                 $res['post']['at'] = date("d M y \ h:i");
                 $res['post']['old_rate'] = constant('oldrate');
-                $res['post']['rate'] = $rate;
-				$res['post']['curr']['code'] = $code;
-				$res['post']['curr']['currName'] = $name;
-				$res['post']['curr']['loc'] = $locs;
+                $res['post']['rate'] = (string)$rate;
+				$res['post']['curr']['code'] = (string)$code;
+				$res['post']['curr']['currName'] = (string)$name;
+				$res['post']['curr']['loc'] = (string)$locs;
 
 				$res = json_encode($res);
 
