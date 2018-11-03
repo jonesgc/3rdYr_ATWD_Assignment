@@ -70,7 +70,8 @@ function query()
             document.getElementById('responseTextArea').value = this.responseText;
         }
         else if(type === "JSON")
-        {
+        {   
+            console.log(this.responseText);
             var jsonStr = this.responseText;
             var jsonPP = JSON.stringify(JSON.parse(jsonStr), null, 2);
             document.getElementById('responseTextArea').value = jsonPP;

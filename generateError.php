@@ -6,23 +6,41 @@ include_once 'config.php';
 //Note the errorHash global used in this function is found in config.php
 
 function generateError($code)
-{
+{   
     if($GLOBALS['errorType'] == "XML")
     {
-        header('Content-Type: text/xml');
-        echo '<?xml version="1.0" encoding="UTF-8"?>';
-        echo '<method type="XML">';
-        echo "<error>";
-        echo "<code>".$code."</code>";
-        echo "<msg>". $GLOBALS['errorHash'][$code]."</msg>";
-        echo "</error>";
-        echo "</method>";
+        if(file_exists('templates/errorTemplateXML.xml'))
+		{
+				
+			$res = simplexml_load_file('templates/errorTemplateXML.xml');
+            $res->error->code = $code;
+            $res->error->msg = $GLOBALS['errorHash'][$code];
+
+			header('Content-Type: text/xml');
+			echo $res->asxml();
+		}
+		else
+		{
+			generateError(2500);
+		}
     }
     elseif($GLOBALS['errorType'] == "JSON")
     {
-        $res = array('method'=>'JSON', 'code'=>$code,'message'=>$GLOBALS['errorHash'][$code]);
-        $res = json_encode($res);
-        print_r($res);
+        if (file_exists('templates/errorTemplateJSON.json'))
+			{
+				$res = json_decode(file_get_contents('templates/errorTemplateJSON.json'), true);
+
+                $res['error']['code'] = $code;
+                $res['error']['msg'] = $GLOBALS['errorHash'][$code];
+
+				$res = json_encode($res);
+
+				echo $res;
+			}
+			else
+			{
+				generateError(2500);
+			}
     }
     else
     {

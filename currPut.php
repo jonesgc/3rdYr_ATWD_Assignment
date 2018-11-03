@@ -69,7 +69,7 @@ function respondPUT($xml)
 		$inactive = $cur->addChild('inactive', "FALSE");
 
 	    //Code inspired by solution on URL:https://stackoverflow.com/questions/798967/php-simplexml-how-to-save-the-file-in-a-formatted-way/1793240
-	    //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure.
+	    //The following lines are not needed for machine readable XML, but are needed to preserve indentation structure for human readability.
 	    $dom = new DOMDocument('1.0');
 	    $dom->preserveWhiteSpace = false;
 	    $dom->formatOutput = true;
