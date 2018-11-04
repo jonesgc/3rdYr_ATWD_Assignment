@@ -1,3 +1,5 @@
+
+
 body
 {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', Verdana, sans-serif;
@@ -23,24 +25,34 @@ body
 {
     font-size: 3em;
     color: white;
+    border-bottom: solid 1px;
 }
+
+#resInput
+{
+    margin-top: 0.40em;
+    margin-bottom: 0.80;
+}
+
 
 input[type=text]
 {
     padding: 0.3em;
     border-radius: 0.25em;
     border: transparent;
+    margin: 0.2em 0.2em 0.2em 0.2em;
 }
 
 #submitRequest
 {   
-    border: #43626d;
+    margin-top: 0.5em;
+    border: solid 1px #e1e7f2;
     border-radius: 0.25em;
     background-color: #4a7c8e;
     color: white;
-    padding: 1em, 2em;
+    padding: 0.25em;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 #responseTextArea
@@ -49,4 +61,123 @@ input[type=text]
     border: solid 1px #43626d;
     background-color: #4a7c8e;
     color: white;
+}
+
+
+@media all and (max-width: 1404px)
+{
+    .item{
+        max-width: 60%;
+    }
+
+    input[type=text]
+    {
+        padding: 3em, 4em;
+    }
+}
+
+@media all and (max-width: 1170px)
+{
+    #container
+    {
+        flex-wrap: wrap;
+    }
+
+    .item{
+        max-width: 70%;
+    }
+
+    input[type=text]
+    {
+        padding: 3.5em, 4.5em;
+    }
+}
+
+@media all and (max-width: 1008px)
+{
+    #container
+    {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    
+    .inputDiv
+    {
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .item{
+        max-width: 100%;
+    }
+
+    input[type=text]
+    {
+        padding: 3.5em, 4.5em;
+    }
+}
+
+/*moblie*/
+@media all and (max-width: 1008px)
+{
+    #container
+    {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    
+    .inputDiv
+    {
+        display:flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #h1Title
+    {
+        font-size: 5.5em;
+    }
+
+    .item{
+        max-width: 100%;
+    }
+
+    #resInput
+    {
+        margin-top: 0.90em;
+        margin-bottom: 1em;
+        font-size: 3em;
+    }
+
+    #radioInput
+    {
+        text-align: center;
+        font-size: 3em;
+    }
+    label
+    {
+        font-size:3em;
+    }
+
+    input[type=text]
+    {
+        padding: 3.5em, 4.5em;
+        font-size: 3em;
+    }
+
+    input[type=radio]
+    {
+        width: 2.5em;
+        height: 2.5em;
+    }
+
+    #submitRequest
+    {   
+        margin-top: 0.5em;
+        border-radius: 0.25em;
+        padding: 0.25em;
+        text-align: center;
+        font-size: 3.5em;
+    }
 }

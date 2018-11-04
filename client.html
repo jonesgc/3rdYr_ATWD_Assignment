@@ -10,38 +10,37 @@
         <div id="container">
                 <h1 id = "h1Title" class="item">Client Page</h1>
                 <div id="radioInput" class="item">
-                    <label id="actionLabel">Action</label>
                     <input id="actionGET" type="radio" name="actionGroup" value="GET" onclick="inputControl()"checked="checked">GET
                     <input id="actionPUT" type="radio" name="actionGroup" value="PUT" onclick="inputControl()">PUT
                     <input id="actionPOST" type="radio" name="actionGroup" value="POST" onclick="inputControl()">POST
                     <input id="actionDEL" type="radio" name="actionGroup" value="DELETE" onclick="inputControl()">DELETE<br>
                 </div>
-                <div id="actionInput">
+                <div id="resInput">
                     <input id="typeXML" type="radio" name="typeGroup" value="XML" checked="checked">XML
                     <input id="typeJSON" type="radio" name="typeGroup" value="JSON">JSON
                 </div>
-                <div id = "getInput" class="item">
-                    <label id="labelFrom">From</label>
+                <div id = "getInput" class="item inputDiv">
+                    <label id="labelFrom" for="from">From</label>
                     <input id="from" type="text">
-                    <label id="labelTo">To</label>
+                    <label id="labelTo" for="to">To</label>
                     <input id="to" type="text">
-                    <label id="labelAmount">Amount</label>
-                    <input id="amount" type="text"><br>
+                    <label id="labelAmount" for="amount">Amount</label>
+                    <input id="amount" type="text">
                 </div>
                 <div id = "putInput" class="item">
-                    <label id = "labelPutCurCode">Currency Code</label>
+                    <label id = "labelPutCurCode" for="putCurCode">Currency Code</label>
                     <input id = "putCurCode" type = "text">
-                    <label id = "labelPutRate">Rate</label>
+                    <label id = "labelPutRate" for="putRate">Rate</label>
                     <input id = "putRate" type = "text">
                 </div>
                 <div id = "postInput" class="item">
-                    <label id = "labelPostCurCode">Currency Code</label>
+                    <label id = "labelPostCurCode" for="postCurCode">Currency Code</label>
                     <input id = "postCurCode" type = "text">
-                    <label id = "labelPostRate">Rate</label>
+                    <label id = "labelPostRate" for="postRate">Rate</label>
                     <input id = "postRate" type = "text">
                 </div>
                 <div id = "deleteInput" class="item">
-                    <label id = "labelDeleteCode">Code to be deleted</label>
+                    <label id = "labelDeleteCode" for="deleteCode">Code to be deleted</label>
                     <input id = "deleteCode" type = "text">
                 </div>
                 <div id = "submit" class="item">
