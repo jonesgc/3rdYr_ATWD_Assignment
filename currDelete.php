@@ -67,6 +67,7 @@ function respondDELETE($xml)
 				$res['delete']['at'] = date("d M y \ h:i");
                 $res['delete']['code'] = (string)$code;
                 
+                header('Content-Type: text/json');
 				$res = json_encode($res);
 
 				echo $res;

@@ -105,6 +105,7 @@ function respondPOST($xml)
 				$res['post']['curr']['currName'] = (string)$name;
 				$res['post']['curr']['loc'] = (string)$locs;
 
+                header('Content-Type: text/json');
 				$res = json_encode($res);
 
 				echo $res;

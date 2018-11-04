@@ -33,6 +33,7 @@ function generateError($code)
                 $res['error']['code'] = $code;
                 $res['error']['msg'] = $GLOBALS['errorHash'][$code];
 
+                header('Content-Type: text/json');
 				$res = json_encode($res);
 
 				echo $res;

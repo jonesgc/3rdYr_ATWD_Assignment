@@ -114,6 +114,7 @@ function respondPUT($xml)
 				$res['put']['curr']['loc'] = (string)$locs;
 				$res['put']['curr']['rate'] = (string)$rate;
 
+				header('Content-Type: text/json');
 				$res = json_encode($res);
 
 				echo $res;

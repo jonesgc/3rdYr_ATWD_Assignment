@@ -204,7 +204,8 @@ function respondGET ($query, $base, $xml)
                 $res['conv']['to']['curr'] = (string)$tCurrName;
                 $res['conv']['to']['loc'] = (string)$tLocs;
                 $res['conv']['to']['amnt'] = (string)$result[5];
-
+                
+                header('Content-Type: text/json');
                 $res = json_encode($res);
 
                 //Send response to client.

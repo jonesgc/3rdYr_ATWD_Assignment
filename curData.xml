@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies base="USD">
   <updated>
-    <time>02:24</time>
-    <date>03/11/18</date>
-    <dataUpdated>1541253604</dataUpdated>
+    <time>03:24</time>
+    <date>04/11/18</date>
+    <dataUpdated>1541343603</dataUpdated>
   </updated>
   <rates>
     <cur>
@@ -16,35 +16,35 @@
     <cur>
       <code>GBP</code>
       <name>British pound</name>
-      <rate>0.77089</rate>
+      <rate>0.7703</rate>
       <loc>Guernsey,Isle of Man,Jersey,South Georgia and the South Sandwich Islands,United Kingdom of Great Britain and Northern Ireland,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CAD</code>
       <name>Canadian dollar</name>
-      <rate>1.31205</rate>
+      <rate>1.312052</rate>
       <loc>Canada,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>AUD</code>
       <name>Australian dollar</name>
-      <rate>1.389091</rate>
+      <rate>1.388889</rate>
       <loc>Antarctica,Australia,Christmas Island,Cocos (Keeling) Islands,Heard Island and McDonald Islands,Kiribati,Nauru,Norfolk Island,Tuvalu,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>BRL</code>
       <name>Brazilian real</name>
-      <rate>3.6952</rate>
+      <rate>3.695</rate>
       <loc>Brazil,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CHF</code>
       <name>Swiss franc</name>
-      <rate>1.0024</rate>
+      <rate>1.00185</rate>
       <loc>Liechtenstein,Switzerland,</loc>
       <inactive>FALSE</inactive>
     </cur>
@@ -65,21 +65,21 @@
     <cur>
       <code>EUR</code>
       <name>Euro</name>
-      <rate>0.8782</rate>
+      <rate>0.878545</rate>
       <loc>Åland Islands,Andorra,Austria,Belgium,Cyprus,Estonia,Finland,France,French Guiana,French Southern Territories,Germany,Greece,Guadeloupe,Holy See,Ireland,Italy,Latvia,Lithuania,Luxembourg,Malta,Martinique,Mayotte,Monaco,Montenegro,Netherlands,Portugal,Republic of Kosovo,Réunion,Saint Barthélemy,Saint Martin (French part),Saint Pierre and Miquelon,San Marino,Slovakia,Slovenia,Spain,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>HKD</code>
       <name>Hong Kong dollar</name>
-      <rate>7.81905</rate>
+      <rate>7.818914</rate>
       <loc>Hong Kong,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>HUF</code>
       <name>Hungarian forint</name>
-      <rate>282.57</rate>
+      <rate>282.59</rate>
       <loc>Hungary,</loc>
       <inactive>FALSE</inactive>
     </cur>
@@ -93,14 +93,14 @@
     <cur>
       <code>JPY</code>
       <name>Japanese yen</name>
-      <rate>113.20541145</rate>
+      <rate>113.205</rate>
       <loc>Japan,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>MXN</code>
       <name>Mexican peso</name>
-      <rate>20.0133</rate>
+      <rate>20.0131</rate>
       <loc>Mexico,</loc>
       <inactive>FALSE</inactive>
     </cur>
@@ -114,7 +114,7 @@
     <cur>
       <code>NOK</code>
       <name>Norwegian krone</name>
-      <rate>8.374159</rate>
+      <rate>8.3715</rate>
       <loc>Bouvet Island,Norway,Svalbard and Jan Mayen,</loc>
       <inactive>FALSE</inactive>
     </cur>
@@ -128,7 +128,7 @@
     <cur>
       <code>PHP</code>
       <name>Philippine peso</name>
-      <rate>53.16</rate>
+      <rate>53.161799</rate>
       <loc>Philippines,</loc>
       <inactive>FALSE</inactive>
     </cur>
@@ -149,28 +149,28 @@
     <cur>
       <code>SGD</code>
       <name>Singapore dollar</name>
-      <rate>1.3741</rate>
+      <rate>1.374108</rate>
       <loc>Singapore, Brunei</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>THB</code>
       <name>Thai baht</name>
-      <rate>32.845</rate>
+      <rate>32.8625</rate>
       <loc>Thailand,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>TRY</code>
       <name>Turkish lira</name>
-      <rate>5.430154</rate>
+      <rate>5.429609</rate>
       <loc>Turkey,</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>ZAR</code>
       <name>South African rand</name>
-      <rate>14.305779</rate>
+      <rate>14.305775</rate>
       <loc>South Africa,</loc>
       <inactive>FALSE</inactive>
     </cur>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config>
-    <apiID>08c94e1539cd46c69ef98a7a2a94ca7a</apiID>
-    <apiURL>https://openexchangerates.org</apiURL>
-    <apiLatest>https://openexchangerates.org/api/latest.json?app_id=</apiLatest>
-    <base>USD</base>
-</config>

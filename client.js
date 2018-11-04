@@ -64,12 +64,15 @@ function query()
     {
       if (this.readyState == 4 && this.status == 200)
       {
-        if(type === "XML")
+        var content = req.getResponseHeader("Content-Type");
+        console.log(content);
+
+        if(content === "text/xml;charset=UTF-8")
         {
             console.log(this.responseText.toString());
             document.getElementById('responseTextArea').value = this.responseText;
         }
-        else if(type === "JSON")
+        else if(content === "text/json;charset=UTF-8")
         {   
             console.log(this.responseText);
             var jsonStr = this.responseText;
