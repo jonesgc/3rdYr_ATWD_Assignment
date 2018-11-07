@@ -58,6 +58,16 @@ function generateError($code)
 function findData($code, $xml)
 {
     $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0, 'inactive'=>"");
+    $query = '//currencies/rates/cur[./code="'.$code.'"]';
+    $match = $xml->xpath($query);
+
+    //Prepare return array.
+    $node['code'] = $match[0]->code;
+    $node['name'] = $match[0]->name;
+    $node['loc'] = $match[0]->loc;
+    $node['rate'] = $match[0]->rate;
+    $node['inactive'] = $match[0]->inactive;
+    /*
     foreach($xml->rates->cur as $currency)
             {
                 if($currency->code == $code)
@@ -69,6 +79,14 @@ function findData($code, $xml)
                     $node['inactive'] = $currency->inactive;
                 }
             }
+    */
     return $node;
 }
+//Test for findData.
+/*
+$testCode = "TEST";
+$test = simplexml_load_file('curData.xml'); 
+$node = findData($testCode, $test);
+print_r($node);
+*/
 ?>

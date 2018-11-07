@@ -86,7 +86,9 @@ function respondGET ($query, $base, $xml)
     if(empty($_GET))
     {
         generateError(1000);
+        die;
     }
+
     $origin = $_GET['from'];
     $target = $_GET['to'];
     $amount = $_GET['amount'];
@@ -220,6 +222,7 @@ function respondGET ($query, $base, $xml)
        }
     }
 
-
 }
+//Test for GET from URL
+//respondGET($query, $base, "");
 ?>

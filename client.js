@@ -67,12 +67,12 @@ function query()
         var content = req.getResponseHeader("Content-Type");
         console.log(content);
 
-        if(content === "text/xml;charset=UTF-8")
+        if(content === "text/xml")
         {
             console.log(this.responseText.toString());
             document.getElementById('responseTextArea').value = this.responseText;
         }
-        else if(content === "text/json;charset=UTF-8")
+        else if(content === "text/json")
         {   
             console.log(this.responseText);
             var jsonStr = this.responseText;
