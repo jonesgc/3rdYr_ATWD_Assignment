@@ -7,11 +7,20 @@ include_once "generateError.php";
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
 
-function respondPOST($xml)
+function respondPOST($xml, $form)
 {
-    //This is because of the type of data coming from the client, need to handel this.
-    $postdata = json_decode(file_get_contents('php://input', true), true);
-    $type = $postdata['type'];
+    if($form)
+    {
+        $postdata = array('code'=>$_POST['code'], 'rate'=>$_POST['rate'], 'type'=>$_POST['type']);
+        $type = $postdata['type'];
+    }
+    else
+    {
+        //No form request header set.
+        $postdata = json_decode(file_get_contents('php://input', true), true);
+        $type = $postdata['type'];
+    }
+    
 
     //Flag variable is used to test if there has been a successful code match.
     $flag = 0;

@@ -39,28 +39,33 @@ function methodController($method, $query, $base, $xml, $URL)
     }
     
     //This IF statement differenciates between a delete request and a true POST request.
+    //This bloc also checks the request headers for post requests to see if they come in the required
+    //format for the $_POST variable in php.
     if($method == 'POST')
     {
         $headers = getallheaders();
+        $form = FALSE;
         foreach($headers as $header)
         {
             if($header == 'DELETE')
             {
                 $method = 'DELETE';
             }
+            elseif($header == 'application/x-www-form-urlencoded')
+            {
+               $form = TRUE;
+            }
         }
-        //print_r($headers);
     }
     switch ($method)
     {
         case 'GET': respondGET($query, $base, $xml);break;
         case 'PUT': respondPUT($xml);break;
-        case 'POST': respondPOST($xml);break;
+        case 'POST': respondPOST($xml , $form);break;
         case 'DELETE': respondDELETE($xml);break;
     }
 }
 
-//echo convertCur($base, $origin, $target, $amount,$xml);
 methodController($method, $query, $base, $xml, $URL);
 
 ?>

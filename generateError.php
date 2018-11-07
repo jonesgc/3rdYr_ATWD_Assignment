@@ -67,19 +67,6 @@ function findData($code, $xml)
     $node['loc'] = $match[0]->loc;
     $node['rate'] = $match[0]->rate;
     $node['inactive'] = $match[0]->inactive;
-    /*
-    foreach($xml->rates->cur as $currency)
-            {
-                if($currency->code == $code)
-                {
-                    $node['code'] = $currency->code;
-                    $node['name'] = $currency->name;
-                    $node['loc'] = $currency->loc;
-                    $node['rate'] = $currency->rate;
-                    $node['inactive'] = $currency->inactive;
-                }
-            }
-    */
     return $node;
 }
 //Test for findData.

@@ -23,7 +23,7 @@ function query()
                 obj["rate"] = document.getElementById('putRate').value;
                 var type = document.querySelector('input[name=typeGroup]:checked').value;
                 obj["type"] = type;
-				var param = JSON.stringify(obj);
+                var param = JSON.stringify(obj);
                 var url = "atwdAPI.php";
                 break;
 
@@ -36,6 +36,8 @@ function query()
                 var type = document.querySelector('input[name=typeGroup]:checked').value;
                 obj["type"] = type;
                 var param = JSON.stringify(obj);
+                //This string is used to test the $_POST method in php. 
+                var test = "code=" + document.getElementById('postCurCode').value + "&" + "rate=" + document.getElementById('postRate').value + "&" + "type=" + type;
                 var url = "atwdAPI.php";
                 break;
 
@@ -91,7 +93,9 @@ function query()
     }
     else if(action === 'POST')
     {
-        req.send(param);
+        req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.send(test);
     }
     else if(action === 'DELETE')
     {
