@@ -5,30 +5,32 @@ include_once "generateError.php";
 function respondDELETE($xml)
 {
     $data = json_decode(file_get_contents('php://input', true), true);
-
+    
     $code = $data['code'];
     $type = $data['type'];
 
     $node = findData($code, $xml);
-    
+
     //Check if the input code exists within the xml file.
     if(!$node['code'] == $code)
     {
         generateError(2400);
+        die;
     }
     else
     {
         //Iterate through XML looking for code, then set the inative flag to TRUE.
         foreach ($xml->rates->cur as $currency)
         {
-            $code = (string)$currency->name;
+            $code = (string)$currency->code;
             $rate = (string)$currency->rate;
 
             if($node['code'] == $code)
             {
 			    if($currency->inactive == "TRUE")
 			    {
-				    generateError(2400);
+                    generateError(2400);
+                    die;
                 }
                 else
                 {
@@ -48,7 +50,7 @@ function respondDELETE($xml)
 				
 				$res = simplexml_load_file('templates/delResXML.xml');
 				$res->at = date("d M y  h:i");
-				$res->code = $code;
+				$res->code = $data['code'];
 
 				header('Content-Type: text/xml');
 				echo $res->asxml();

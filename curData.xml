@@ -174,12 +174,5 @@
       <loc>South Africa,</loc>
       <inactive>FALSE</inactive>
     </cur>
-    <cur>
-      <code>TEST</code>
-      <name>TEST</name>
-      <rate>123111.1</rate>
-      <loc>hello,</loc>
-      <inactive>FALSE</inactive>
-    </cur>
   </rates>
 </currencies>

@@ -14,27 +14,18 @@ function validCurrCheck($code, $xml)
 		//SOme currencies use more than one currency.
 		foreach ($obj["currencies"] as $currency)
 		{
-			var_dump($currency);
-			//echo $currency;
-			//echo " ";
-		}
-		
-		//Add the locations that the currency is used in.
-		if($obj["currencies"][0]["code"] == $code)
-		{
-			$validCurr["locs"] = $validCurr["locs"] . $obj["name"] . ",";
-		}
-	
-		//Find a match for the curency name.
-		foreach ($xml->rates->cur as $currency)
-		{
-			if($code == $obj["currencies"][0]["code"])
+			if($currency["code"] == $code)
 			{
-				$validCurr["currName"] = $obj["currencies"][0]["name"];
+				//Add the full name of the currency, does not matter if this overwrites since it will still be the same.
+				$validCurr["currName"] = $currency["name"];
+
+				//Append the location that the currency is used in.
+				$validCurr["locs"] = $validCurr["locs"] . $obj["name"] . ",";
 			}
 		}
-	
 	}
+
+	//If either the locations or the name cannot be found it must not be a proper currency.
 	if((empty($validCurr['currName'])) || (empty($validCurr['locs'])))
 	{
 		return FALSE;
@@ -45,8 +36,9 @@ function validCurrCheck($code, $xml)
 	}
 }
 //Test for above function.
+/*
 $test = simplexml_load_file('curData.xml');
-$node = validCurrCheck("JPY", $test);
+$node = validCurrCheck("SGD", $test);
 if($node == FALSE)
 {
 	echo "FALSE";
@@ -55,7 +47,7 @@ else
 {
 	print_r($node);
 }
-
+*/
 
 
 function respondPUT($xml)
@@ -68,7 +60,6 @@ function respondPUT($xml)
 
 	//Check if the currency is valid one according to the ISO standard.
 	$isValid = validCurrCheck($code, $xml);
-	print_r($isValid);
 
 	//The rest of the data needed to complete the node is returned from validCurrCheck, such as full name of the currency and the locations.
 	$name = $isValid['currName'];

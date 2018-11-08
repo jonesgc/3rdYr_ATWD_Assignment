@@ -56,22 +56,30 @@ function generateError($code)
 //The rate described is the rate vs the base currency.
 //This function is included in this file since the inclusion of this file is required in all API files.
 function findData($code, $xml)
-{
+{   
     $node = array('code'=>"", 'name'=>"", 'loc'=>"", 'rate'=> 0, 'inactive'=>"");
     $query = '//currencies/rates/cur[./code="'.$code.'"]';
     $match = $xml->xpath($query);
 
-    //Prepare return array.
-    $node['code'] = $match[0]->code;
-    $node['name'] = $match[0]->name;
-    $node['loc'] = $match[0]->loc;
-    $node['rate'] = $match[0]->rate;
-    $node['inactive'] = $match[0]->inactive;
-    return $node;
+    if(empty($match))
+    {
+        return FALSE;
+    }
+    else
+    {
+        //Prepare return array.
+        $node['code'] = $match[0]->code;
+        $node['name'] = $match[0]->name;
+        $node['loc'] = $match[0]->loc;
+        $node['rate'] = $match[0]->rate;
+        $node['inactive'] = $match[0]->inactive;
+        return $node;
+    }
+    
 }
 //Test for findData.
 /*
-$testCode = "TEST";
+$testCode = "USD";
 $test = simplexml_load_file('curData.xml'); 
 $node = findData($testCode, $test);
 print_r($node);
