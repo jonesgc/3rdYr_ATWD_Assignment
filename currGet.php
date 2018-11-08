@@ -26,11 +26,16 @@ function convertCur($base, $origin, $target, $amount, $xml)
             {
                 $originVal = 1;
             }
-            elseif($target == $base)
+            if($target == $base)
             {
                 $targetVal = 1;
             }
 
+        }
+        elseif(($code == $origin) && ($code == $target))
+        {
+            $originVal = $rate;
+            $targetVal = $rate;
         }
         elseif($code == $origin)
         {
@@ -41,6 +46,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
             $targetVal = $rate;
             //echo $rate; 
         }
+       
     }
 	//Check if originVal and targetVal are still zero, if so that means the code
 	//has not been matched.
@@ -52,12 +58,10 @@ function convertCur($base, $origin, $target, $amount, $xml)
 
 		if($originVal == 0)
 		{
-            echo $origin;
 			$err[2] =  "From code not found";
 		}
 		elseif($targetVal == 0)
 		{
-            echo $target;
 			$err[2] = "To code not found";
         }
         elseif(($originVal == 0) && ($targetVal))
