@@ -22,7 +22,15 @@ function convertCur($base, $origin, $target, $amount, $xml)
 
         if($code == $base)
         {
-            //Cannot alter the base currency in this function.
+            if($origin == $base)
+            {
+                $originVal = 1;
+            }
+            elseif($target == $base)
+            {
+                $targetVal = 1;
+            }
+
         }
         elseif($code == $origin)
         {
@@ -31,6 +39,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
         elseif($code == $target)
         {
             $targetVal = $rate;
+            //echo $rate; 
         }
     }
 	//Check if originVal and targetVal are still zero, if so that means the code
@@ -91,8 +100,16 @@ function respondGET ($query, $base, $xml)
 
     $origin = $_GET['from'];
     $target = $_GET['to'];
-    $amount = $_GET['amount'];
-    $type = $_GET['type'];
+    $amount = $_GET['amnt'];
+
+    if(isset($_GET['type']))
+    {
+        $type = $_GET['format'];
+    }
+    else
+    {
+        $type = "XML";
+    }
 
     //Validate parameters, checking if codes do not contain numbers and are all caps, and numbers are decimals.
     $oTest = preg_match('/([A-Z])([^a-z])/', $origin);

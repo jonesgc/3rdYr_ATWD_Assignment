@@ -12,7 +12,7 @@ function query()
                 var to = document.getElementById('to').value;
                 var amount = document.getElementById('amount').value
                 var type = document.querySelector('input[name=typeGroup]:checked').value;
-                var url = baseurl +"from=" + from + "&" + "to=" + to + "&" + "amount=" + amount + "&" + "type=" + type;
+                var url = baseurl +"from=" + from + "&" + "to=" + to + "&" + "amnt=" + amount + "&" + "format=" + type;
                 break;
 
             case 'PUT':
