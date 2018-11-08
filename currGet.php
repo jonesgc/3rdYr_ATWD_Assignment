@@ -193,19 +193,19 @@ function respondGET ($query, $base, $xml)
                 $res = json_decode(file_get_contents('templates/getResJSON.json'), true);
 
                 $res['conv']['at'] = date("d M y \ h:i", (int)$xml->updated->dataUpdated);
-                $res['conv']['rate'] = (string)$result[1];
+                $res['conv']['rate'] = (float)$result[1];
 
                 //Input origin or from response values into JSON.
                 $res['conv']['from']['code'] = (string)$origin;
                 $res['conv']['from']['curr'] = (string)$oCurrName;
                 $res['conv']['from']['loc'] = (string)$oLocs;
-                $res['conv']['from']['amnt' ]= (string)$amount;
+                $res['conv']['from']['amnt' ]= (float)$amount;
 
                 //Input target or to response values into JSON.
                 $res['conv']['to']['code'] = (string)$target;
                 $res['conv']['to']['curr'] = (string)$tCurrName;
                 $res['conv']['to']['loc'] = (string)$tLocs;
-                $res['conv']['to']['amnt'] = (string)$result[5];
+                $res['conv']['to']['amnt'] = (float)$result[5];
                 
                 header('Content-Type: text/json');
                 $res = json_encode($res);

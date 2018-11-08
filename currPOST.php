@@ -109,7 +109,7 @@ function respondPOST($xml, $form)
 
                 $res['post']['at'] = date("d M y \ h:i");
                 $res['post']['old_rate'] = constant('oldrate');
-                $res['post']['rate'] = (string)$rate;
+                $res['post']['rate'] = (float)$rate;
 				$res['post']['curr']['code'] = (string)$code;
 				$res['post']['curr']['currName'] = (string)$name;
 				$res['post']['curr']['loc'] = (string)$locs;
