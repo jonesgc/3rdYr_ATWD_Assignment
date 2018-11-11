@@ -77,10 +77,19 @@ function respondPUT($xml)
 	{
 		if($code == $node['code'])
 		{
-			//If the currency is already in the file then the PUT function should re activete it.
-			$object = $xml->xpath('//currencies/rates/cur[./code="'.$code.'"]');
-			$object[0]->inactive = "FALSE";
-			file_put_contents('curData.xml', $xml->asxml());
+			if($node['inactive'] == "FALSE")
+			{
+				//If the currency is in the file and still active put should throw an error.
+				generateError(2500);
+			}
+			else
+			{
+				//If the currency is already in the file then the PUT function should re activete it.
+				$object = $xml->xpath('//currencies/rates/cur[./code="'.$code.'"]');
+				$object[0]->inactive = "FALSE";
+				file_put_contents('curData.xml', $xml->asxml());
+			}
+			
 		}
 		else
 		{

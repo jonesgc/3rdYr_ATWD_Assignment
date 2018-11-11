@@ -7,11 +7,11 @@ include_once 'config.php';
 
 function generateError($code)
 {   
+    //Check the type of error type, then fetch the template that corrisponds to the value and output the error.
     if($GLOBALS['errorType'] == "XML")
     {
         if(file_exists('templates/errorTemplateXML.xml'))
 		{
-				
 			$res = simplexml_load_file('templates/errorTemplateXML.xml');
             $res->error->code = $code;
             $res->error->msg = $GLOBALS['errorHash'][$code];

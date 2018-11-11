@@ -102,25 +102,57 @@ function respondGET ($query, $base, $xml)
         die;
     }
 
-    $origin = $_GET['from'];
-    $target = $_GET['to'];
-    $amount = $_GET['amnt'];
+    //Check if values are input in the get query
+    //from
+    if(array_key_exists('from', $_GET))
+    {
+        $origin = $_GET['from'];
+    }
+    else
+    {
+        generateError(1000);
+        die;    
+    }
 
-    if(isset($_GET['type']))
+    //to
+    if(array_key_exists('to', $_GET))
+    {
+        $target = $_GET['to'];
+    }
+    else
+    {
+        generateError(1000);
+        die;    
+    }
+    
+    //amount
+    if(array_key_exists('amnt', $_GET))
+    {
+        $amount = $_GET['amnt'];
+    }
+    else
+    {
+        generateError(1000);
+        die;    
+    }
+    
+    //format
+    if(array_key_exists('format', $_GET))
     {
         $type = $_GET['format'];
+        $type = strtoupper($type);
     }
     else
     {
         $type = "XML";
     }
 
-    //Validate parameters, checking if codes do not contain numbers and are all caps, and numbers are decimals.
-    $oTest = preg_match('/([A-Z])([^a-z])/', $origin);
-    $tTest = preg_match('/([A-Z])([^a-z])/', $target);
+    //Validate parameters, checking if codes do not contain numbers and are all caps.
+    $oTest = preg_match('/([A-Z]){3}/', $origin);
+    $tTest = preg_match('/([A-Z]){3}/', $target);
 
-    //These tests check if the input parameter is the correct style and exists.
-    if(!$oTest)
+    //These tests check if the input parameter is the correct style.
+    if(isset($origin))
     {
         if($origin == "")
         {
@@ -131,7 +163,7 @@ function respondGET ($query, $base, $xml)
             generateError(1100);
         }
     }
-    elseif(!$tTest)
+    elseif(isset($target))
     {
         if($target == "")
         {
@@ -141,11 +173,6 @@ function respondGET ($query, $base, $xml)
         {
             generateError(1100);
         }
-    }
-    //Check if either of the other parameters are missing.
-    elseif(($amount == "") || ($type == ""))
-    {
-        generateError(1000);
     }
     //Check response type, must match either XML or JSON.
     elseif(($type != "JSON") && ($type != "XML"))
