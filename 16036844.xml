@@ -57,7 +57,7 @@
             </tests>
             <data>
                 <rates_file>
-                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/data/rates.xml
+                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/curData.xml
                 </rates_file>
             </data>
             <code>
@@ -68,8 +68,13 @@
                 <file type="config">
                     http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/config.phps
                 </file>
-                <file type="functions">
-                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/functions.phps
+                <file type="errorHandling">
+                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/generateError.phps
+                <file type="externalAPI">
+                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/curDataMonitor.phps
+                </file>
+                <file type="GET">
+                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/currGet.phps
                 </file>
             </code>
             <comment>This was easy-peasy. Did it in my sleep.</comment>
@@ -83,12 +88,12 @@
                     http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/currPut.phps
                 </file>
                 <file type="DEL">
-                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/currDel.phps
+                    http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/docs/currDelete.phps
                 </file>
             </code>
             <!--  interface form  -->
             <form>
-                http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/update.html
+                http://isa.cems.uwe.ac.uk/~g45-jones/atwd1/assignment/client/client.html
             </form>
             <comment>
                 A responsive form and easy code - again far too easy. Blimey, is this first year stuff?
