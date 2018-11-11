@@ -1,12 +1,12 @@
 <?php
 
-include_once "config.php";
-include_once "generateError.php";
-include_once "currGet.php";
-include_once "currPOST.php";
-include_once "curDataMonitor.php";
-include_once "currPut.php";
-include_once "currDelete.php";
+include_once (__DIR__."/lib/config.php");
+include_once (__DIR__."/lib/generateError.php");
+include_once (__DIR__."/lib/currGet.php");
+include_once (__DIR__."/lib/currPost.php");
+include_once (__DIR__."/lib/curDataMonitor.php");
+include_once (__DIR__."/lib/currPut.php");
+include_once (__DIR__."/lib/currDelete.php");
 
 $method = $_SERVER['REQUEST_METHOD'];
 $query = $_SERVER['QUERY_STRING'];
