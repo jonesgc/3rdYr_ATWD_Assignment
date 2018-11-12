@@ -127,9 +127,8 @@ function respondGET ($query, $base, $xml)
         }
     }
 
-
-
-    
+    //Validate the contents of each of the query keys.
+    //I.e. catch errors if the key is frm rather than from.
     if($keys[0] != 'from')
     {
         generateError(1100);
@@ -145,7 +144,7 @@ function respondGET ($query, $base, $xml)
         generateError(1100);
         die;
     }
-    
+
 
     //Check if values are input in the get query
     //from
