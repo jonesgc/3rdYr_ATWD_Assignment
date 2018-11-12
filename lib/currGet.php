@@ -102,8 +102,34 @@ function respondGET ($query, $base, $xml)
         die;
     }
 
-    //validate the keys for the get query.
+    $queryFormat = array('from', 'to', 'amnt', 'format');
+
+    //Validate the keys for the get query.
     $keys = array_keys($_GET);
+
+    //Format is optional and should default to XML
+    if(array_key_exists('format', $_GET))
+    {
+        if(count($keys) < 4)
+        {
+            //Required parameter missing.
+            generateError(1000);
+            die;
+        }
+    }
+    else
+    {
+        //Format missing but is optional so only error if one required is missing.
+        if(count($keys) < 3)
+        {
+            generateError(1000);
+            die;
+        }
+    }
+
+
+
+    
     if($keys[0] != 'from')
     {
         generateError(1100);
@@ -120,6 +146,7 @@ function respondGET ($query, $base, $xml)
         die;
     }
     
+
     //Check if values are input in the get query
     //from
     if(array_key_exists('from', $_GET))
@@ -170,27 +197,9 @@ function respondGET ($query, $base, $xml)
     $tTest = preg_match('/([A-Z]){3}/', $target);
 
     //These tests check if the input parameter is the correct style.
-    if(isset($origin))
+    if(($oTest == FALSE) || ($tTest == FALSE))
     {
-        if($origin == "")
-        {
-            generateError(1000);
-        }
-        else
-        {
-            generateError(1100);
-        }
-    }
-    elseif(isset($target))
-    {
-        if($target == "")
-        {
-            generateError(1000);
-        }
-        else
-        {
-            generateError(1100);
-        }
+        generateError(1100);
     }
     //Check response type, must match either XML or JSON.
     elseif(($type != "JSON") && ($type != "XML"))
