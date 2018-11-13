@@ -82,7 +82,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
 		//Perform the conversion, using the base currency as a "stepping stone"
         $newAmount = ($amount / $originVal) * $targetVal;
         //Format the number to 4 digits after the decimal.
-        $newAmount = number_format($newAmount, 4, '.', '');
+        $newAmount = number_format($newAmount, 2, '.', '');
 	    $result = array($origin, $originVal, $amount, $target, $targetVal, $newAmount);
 
 	    return $result;
@@ -218,6 +218,7 @@ function respondGET ($query, $base, $xml)
         $tDat = findData($target, $xml);
         $tCurrName = $tDat['name'];
         $tLocs = $tDat['loc'];
+
         //Catch an error in currency codes being wrong.
         if($result[0] == "ERROR")
         {
@@ -237,6 +238,7 @@ function respondGET ($query, $base, $xml)
                $res = simplexml_load_file('templates/getResXML.xml');
                $res->at = date("d M y h:i", (int)$xml->updated->dataUpdated);
                $res->rate = $result[1];
+
 
                //Origin or from return values input into response xml.
                $res->from->code = $origin;

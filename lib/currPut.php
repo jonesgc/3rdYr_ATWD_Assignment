@@ -67,8 +67,14 @@ function respondPUT($xml)
 
 	//Search XML document for a matching code.
 	$node = findData($code, $xml);
+
+	//Check if the put rate is 0 
+	if((float)$rate <= 0.0)
+	{
+		generateError(2500);
+	}
 	//If $isValid is empty that means that the code entered was not a valid code according to the ISO standard.
-	if($isValid == FALSE)
+	elseif($isValid == FALSE)
 	{
 		generateError(2400);
 	}
