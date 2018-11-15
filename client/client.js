@@ -20,7 +20,6 @@ function query()
                 //var code = document.getElementById('from').value;
                 //var amount = document.getElementById('amount').value;
                 obj["code"] = document.getElementById('putCurCode').value;
-                obj["rate"] = document.getElementById('putRate').value;
                 var type = document.querySelector('input[name=typeGroup]:checked').value;
                 obj["type"] = type;
                 var param = JSON.stringify(obj);

@@ -52,17 +52,45 @@ else
 }
 */
 
+function getRateForPut($code)
+{
+	$latestData = json_decode(file_get_contents($GLOBALS['URL']));
+
+	$rate = $latestData->rates->$code;
+	if(isset($rate))
+	{
+		return $rate;
+	}
+	else
+	{
+		return FALSE;
+	}
+	
+}
+/*Test for above function.
+$url = $apiLatest . $apiID;
+//Test with true code.
+var_dump(getRatesForPut("AFN"));
+//Test with false code.
+var_dump( getRateForPut("TEST"));
+*/
 
 function respondPUT($xml)
 {
   	//Extract the put data from the php stdin stream.
 	$putdata = json_decode(file_get_contents('php://input', true), true);
 	$code = $putdata['code'];
-	$rate = $putdata['rate'];
 	$type = $putdata['type'];
-
+	
 	//Check if the currency is valid one according to the ISO standard.
 	$isValid = validCurrCheck($code, $xml);
+
+	//Get the rate for the code from the external api, if the function returns false then error.
+	$rate = getRateForPut($code);
+	if($rate == FALSE)
+	{
+		generateError(2400);
+	}
 
 	//The rest of the data needed to complete the node is returned from validCurrCheck, such as full name of the currency and the locations.
 	$name = $isValid['currName'];
