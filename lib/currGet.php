@@ -110,10 +110,27 @@ function respondGET ($query, $base, $xml)
     //Format is optional and should default to XML
     if(array_key_exists('format', $_GET))
     {
+        //Check if the format value is XML or JSON.
+        $format = strtoupper($_GET['format']);
+        if($format == "XML" || $format == "JSON")
+        {
+            $GLOBALS['errorType'] = $format;
+        }
+        else
+        {
+            generateError(1400);
+            die;
+        }
+        //Check the number of keys in the query.
         if(count($keys) < 4)
         {
             //Required parameter missing.
             generateError(1000);
+            die;
+        }
+        elseif(count($keys) > 4)
+        {
+            generateError(1100);
             die;
         }
     }
@@ -123,6 +140,11 @@ function respondGET ($query, $base, $xml)
         if(count($keys) < 3)
         {
             generateError(1000);
+            die;
+        }
+        elseif(count($keys) > 3)
+        {
+            generateError(1100);
             die;
         }
     }
