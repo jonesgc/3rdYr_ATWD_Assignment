@@ -1,6 +1,8 @@
 {
-    "error":{
-        "code":"",
-        "msg":""
+    "conv":{
+        "error":{
+            "code":"",
+            "msg":""
+        }
     }
 }

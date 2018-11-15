@@ -30,8 +30,8 @@ function generateError($code)
 			{
 				$res = json_decode(file_get_contents('templates/errorTemplateJSON.json'), true);
 
-                $res['error']['code'] = $code;
-                $res['error']['msg'] = $GLOBALS['errorHash'][$code];
+                $res['conv']['error']['code'] = $code;
+                $res['conv']['error']['msg'] = $GLOBALS['errorHash'][$code];
 
                 header('Content-Type: text/json');
 				$res = json_encode($res);
