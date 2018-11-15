@@ -45,7 +45,7 @@ function generateError($code)
     }
     else
     {
-        echo "Error in error reporting function";
+        echo generateError(2500);
     }
 }
 //Test for above function.

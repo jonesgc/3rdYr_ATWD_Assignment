@@ -20,7 +20,8 @@ if (file_exists('curData.xml'))
 }
 else
 {
-    echo "Cant find currency data file.";
+    //1500 is used as the general severice error.
+    generateError(1500);
 }
 $URL = $apiLatest . $apiID;
 

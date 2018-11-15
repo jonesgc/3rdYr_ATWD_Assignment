@@ -21,6 +21,9 @@ function validCurrCheck($code, $xml)
 
 				//Append the location that the currency is used in.
 				$validCurr["locs"] = $validCurr["locs"] . $obj["name"] . ",";
+
+				//Remove trailing comma.
+				$validCurr["locs"] = rtrim($validCurr["locs"], ',');
 			}
 		}
 	}

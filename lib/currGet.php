@@ -72,7 +72,7 @@ function convertCur($base, $origin, $target, $amount, $xml)
 		return $err;
     }
     //Check if the amount is a decimal.
-    elseif (!preg_match('/\./', $amount))
+    elseif (!preg_match('/([0-9]+)(\.)([0-9])/', $amount))
     {
         $err = array("ERROR", "1300");
         return $err;

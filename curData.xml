@@ -1,177 +1,177 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies>
   <updated>
-    <time>02:05</time>
-    <date>13/11/18</date>
-    <dataUpdated>1542117600</dataUpdated>
+    <time>02:54</time>
+    <date>15/11/18</date>
+    <dataUpdated>1542290400</dataUpdated>
   </updated>
   <rates>
     <cur>
       <code>USD</code>
       <name>United State Dollar</name>
       <rate>1</rate>
-      <loc>American Samoa,Bonaire, Sint Eustatius and Saba,British Indian Ocean Territory,United States Minor Outlying Islands,Virgin Islands (U.S.),Ecuador,El Salvador,Guam,Marshall Islands,Northern Mariana Islands,Puerto Rico,Timor-Leste,Turks and Caicos Islands,United States of America,</loc>
+      <loc>American Samoa,Bonaire, Sint Eustatius and Saba,British Indian Ocean Territory,United States Minor Outlying Islands,Virgin Islands (U.S.),Ecuador,El Salvador,Guam,Marshall Islands,Northern Mariana Islands,Puerto Rico,Timor-Leste,Turks and Caicos Islands,United States of America</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>GBP</code>
       <name>British pound</name>
-      <rate>0.771833</rate>
-      <loc>Guernsey,Isle of Man,Jersey,South Georgia and the South Sandwich Islands,United Kingdom of Great Britain and Northern Ireland,</loc>
+      <rate>0.782695</rate>
+      <loc>Guernsey,Isle of Man,Jersey,South Georgia and the South Sandwich Islands,United Kingdom of Great Britain and Northern Ireland</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CAD</code>
       <name>Canadian dollar</name>
-      <rate>1.323583</rate>
-      <loc>Canada,</loc>
+      <rate>1.322952</rate>
+      <loc>Canada</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>AUD</code>
       <name>Australian dollar</name>
-      <rate>1.386889</rate>
-      <loc>Antarctica,Australia,Christmas Island,Cocos (Keeling) Islands,Heard Island and McDonald Islands,Kiribati,Nauru,Norfolk Island,Tuvalu,</loc>
+      <rate>1.375838</rate>
+      <loc>Antarctica,Australia,Christmas Island,Cocos (Keeling) Islands,Heard Island and McDonald Islands,Kiribati,Nauru,Norfolk Island,Tuvalu</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>BRL</code>
       <name>Brazilian real</name>
-      <rate>3.781375</rate>
-      <loc>Brazil,</loc>
+      <rate>3.78415</rate>
+      <loc>Brazil</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CHF</code>
       <name>Swiss franc</name>
-      <rate>1.009799</rate>
-      <loc>Liechtenstein,Switzerland,</loc>
+      <rate>1.006176</rate>
+      <loc>Liechtenstein,Switzerland</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CNY</code>
       <name>Chinese yuan</name>
-      <rate>6.9575</rate>
-      <loc>China,</loc>
+      <rate>6.94</rate>
+      <loc>China</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>DKK</code>
       <name>Danish krone</name>
-      <rate>6.622024</rate>
-      <loc>Denmark,Faroe Islands,Greenland,</loc>
+      <rate>6.607607</rate>
+      <loc>Denmark,Faroe Islands,Greenland</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>EUR</code>
       <name>Euro</name>
-      <rate>0.887478</rate>
-      <loc>Åland Islands,Andorra,Austria,Belgium,Cyprus,Estonia,Finland,France,French Guiana,French Southern Territories,Germany,Greece,Guadeloupe,Holy See,Ireland,Italy,Latvia,Lithuania,Luxembourg,Malta,Martinique,Mayotte,Monaco,Montenegro,Netherlands,Portugal,Republic of Kosovo,Réunion,Saint Barthélemy,Saint Martin (French part),Saint Pierre and Miquelon,San Marino,Slovakia,Slovenia,Spain,</loc>
+      <rate>0.885727</rate>
+      <loc>Åland Islands,Andorra,Austria,Belgium,Cyprus,Estonia,Finland,France,French Guiana,French Southern Territories,Germany,Greece,Guadeloupe,Holy See,Ireland,Italy,Latvia,Lithuania,Luxembourg,Malta,Martinique,Mayotte,Monaco,Montenegro,Netherlands,Portugal,Republic of Kosovo,Réunion,Saint Barthélemy,Saint Martin (French part),Saint Pierre and Miquelon,San Marino,Slovakia,Slovenia,Spain</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>HKD</code>
       <name>Hong Kong dollar</name>
-      <rate>7.82975</rate>
-      <loc>Hong Kong,</loc>
+      <rate>7.83327</rate>
+      <loc>Hong Kong</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>HUF</code>
       <name>Hungarian forint</name>
-      <rate>286.396496</rate>
-      <loc>Hungary,</loc>
+      <rate>285.364133</rate>
+      <loc>Hungary</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>INR</code>
       <name>Indian rupee</name>
-      <rate>72.554073</rate>
-      <loc>India,</loc>
+      <rate>71.974257</rate>
+      <loc>India</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>JPY</code>
       <name>Japanese yen</name>
-      <rate>113.8755</rate>
-      <loc>Japan,</loc>
+      <rate>113.28292857</rate>
+      <loc>Japan</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>MXN</code>
       <name>Mexican peso</name>
-      <rate>20.4429</rate>
-      <loc>Mexico,</loc>
+      <rate>20.412147</rate>
+      <loc>Mexico</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>MYR</code>
       <name>Malaysian ringgit</name>
-      <rate>4.191204</rate>
-      <loc>Malaysia,</loc>
+      <rate>4.189009</rate>
+      <loc>Malaysia</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>NOK</code>
       <name>Norwegian krone</name>
-      <rate>8.478643</rate>
-      <loc>Bouvet Island,Norway,Svalbard and Jan Mayen,</loc>
+      <rate>8.504349</rate>
+      <loc>Bouvet Island,Norway,Svalbard and Jan Mayen</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>NZD</code>
       <name>New Zealand dollar</name>
-      <rate>1.480713</rate>
-      <loc>Cook Islands,New Zealand,Niue,Pitcairn,Tokelau,</loc>
+      <rate>1.467033</rate>
+      <loc>Cook Islands,New Zealand,Niue,Pitcairn,Tokelau</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>PHP</code>
       <name>Philippine peso</name>
-      <rate>53.1205</rate>
-      <loc>Philippines,</loc>
+      <rate>52.7025</rate>
+      <loc>Philippines</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>RUB</code>
       <name>Russian ruble</name>
-      <rate>67.609</rate>
-      <loc>Russian Federation,</loc>
+      <rate>66.586</rate>
+      <loc>Russian Federation</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>SEK</code>
       <name>Swedish krona</name>
-      <rate>9.08938</rate>
-      <loc>Sweden,</loc>
+      <rate>9.081184</rate>
+      <loc>Sweden</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>SGD</code>
       <name>Singapore dollar</name>
-      <rate>1.380925</rate>
+      <rate>1.376925</rate>
       <loc>Singapore, Brunei</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>THB</code>
       <name>Thai baht</name>
-      <rate>32.9845</rate>
-      <loc>Thailand,</loc>
+      <rate>32.9725</rate>
+      <loc>Thailand</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>TRY</code>
       <name>Turkish lira</name>
-      <rate>5.494016</rate>
-      <loc>Turkey,</loc>
+      <rate>5.401529</rate>
+      <loc>Turkey</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>ZAR</code>
       <name>South African rand</name>
-      <rate>14.414152</rate>
-      <loc>South Africa,</loc>
+      <rate>14.273616</rate>
+      <loc>South Africa</loc>
       <inactive>FALSE</inactive>
     </cur>
   </rates>
