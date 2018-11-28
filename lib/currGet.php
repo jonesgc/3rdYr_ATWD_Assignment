@@ -153,17 +153,17 @@ function respondGET ($query, $base, $xml)
     //I.e. catch errors if the key is frm rather than from.
     if($keys[0] != 'from')
     {
-        generateError(1100);
+        generateError(1000);
         die;
     }
     elseif($keys[1] != 'to')
     {
-        generateError(1100);
+        generateError(1000);
         die;
     }
     elseif($keys[2] != 'amnt')
     {
-        generateError(1100);
+        generateError(1000);
         die;
     }
 
@@ -199,7 +199,7 @@ function respondGET ($query, $base, $xml)
     else
     {
         generateError(1000);
-        die;    
+        die;
     }
     
     //format
@@ -211,6 +211,13 @@ function respondGET ($query, $base, $xml)
     else
     {
         $type = "XML";
+    }
+
+    //Check if value entered is 0, if so refuse to do the conversion to avoid dividing by 0.
+    if($amount <= 0.0 )
+    {
+        generateError(1000);
+        die;
     }
 
     //Validate parameters, checking if codes do not contain numbers and are all caps.
@@ -258,8 +265,8 @@ function respondGET ($query, $base, $xml)
            if (file_exists('templates/getResXML.xml'))
            {
                $res = simplexml_load_file('templates/getResXML.xml');
-               $res->at = date("d M y h:i", (int)$xml->updated->dataUpdated);
-               $res->rate = $result[1];
+               $res->at = date("d M Y h:i", (int)$xml->updated->dataUpdated);
+               $res->rate = $result[2];
 
 
                //Origin or from return values input into response xml.
@@ -290,8 +297,8 @@ function respondGET ($query, $base, $xml)
            {
                 $res = json_decode(file_get_contents('templates/getResJSON.json'), true);
 
-                $res['conv']['at'] = date("d M y \ h:i", (int)$xml->updated->dataUpdated);
-                $res['conv']['rate'] = (float)$result[1];
+                $res['conv']['at'] = date("d M Y \ h:i", (int)$xml->updated->dataUpdated);
+                $res['conv']['rate'] = (float)$result[2];
 
                 //Input origin or from response values into JSON.
                 $res['conv']['from']['code'] = (string)$origin;
