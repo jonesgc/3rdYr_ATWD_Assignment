@@ -266,7 +266,7 @@ function respondGET ($query, $base, $xml)
            {
                $res = simplexml_load_file('templates/getResXML.xml');
                $res->at = date("d M Y h:i", (int)$xml->updated->dataUpdated);
-               $res->rate = $result[2];
+               $res->rate = $result[1];
 
 
                //Origin or from return values input into response xml.
@@ -298,7 +298,7 @@ function respondGET ($query, $base, $xml)
                 $res = json_decode(file_get_contents('templates/getResJSON.json'), true);
 
                 $res['conv']['at'] = date("d M Y \ h:i", (int)$xml->updated->dataUpdated);
-                $res['conv']['rate'] = (float)$result[2];
+                $res['conv']['rate'] = (float)$result[1];
 
                 //Input origin or from response values into JSON.
                 $res['conv']['from']['code'] = (string)$origin;

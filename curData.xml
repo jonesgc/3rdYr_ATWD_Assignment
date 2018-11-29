@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <currencies>
   <updated>
-    <time>12:56</time>
-    <date>28/11/18</date>
-    <dataUpdated>1543406400</dataUpdated>
+    <time>09:45</time>
+    <date>29/11/18</date>
+    <dataUpdated>1543482000</dataUpdated>
   </updated>
   <rates>
     <cur>
@@ -16,161 +16,161 @@
     <cur>
       <code>GBP</code>
       <name>British pound</name>
-      <rate>0.781334</rate>
+      <rate>0.781837</rate>
       <loc>Guernsey,Isle of Man,Jersey,South Georgia and the South Sandwich Islands,United Kingdom of Great Britain and Northern Ireland</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CAD</code>
       <name>Canadian dollar</name>
-      <rate>1.331425</rate>
+      <rate>1.328065</rate>
       <loc>Canada</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>AUD</code>
       <name>Australian dollar</name>
-      <rate>1.381528</rate>
+      <rate>1.365898</rate>
       <loc>Antarctica,Australia,Christmas Island,Cocos (Keeling) Islands,Heard Island and McDonald Islands,Kiribati,Nauru,Norfolk Island,Tuvalu</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>BRL</code>
       <name>Brazilian real</name>
-      <rate>3.866252</rate>
+      <rate>3.851061</rate>
       <loc>Brazil</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CHF</code>
       <name>Swiss franc</name>
-      <rate>0.999158</rate>
+      <rate>0.993599</rate>
       <loc>Liechtenstein,Switzerland</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>CNY</code>
       <name>Chinese yuan</name>
-      <rate>6.9534</rate>
+      <rate>6.9462</rate>
       <loc>China</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>DKK</code>
       <name>Danish krone</name>
-      <rate>6.615085</rate>
+      <rate>6.559511</rate>
       <loc>Denmark,Faroe Islands,Greenland</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>EUR</code>
       <name>Euro</name>
-      <rate>0.886562</rate>
+      <rate>0.879025</rate>
       <loc>Åland Islands,Andorra,Austria,Belgium,Cyprus,Estonia,Finland,France,French Guiana,French Southern Territories,Germany,Greece,Guadeloupe,Holy See,Ireland,Italy,Latvia,Lithuania,Luxembourg,Malta,Martinique,Mayotte,Monaco,Montenegro,Netherlands,Portugal,Republic of Kosovo,Réunion,Saint Barthélemy,Saint Martin (French part),Saint Pierre and Miquelon,San Marino,Slovakia,Slovenia,Spain</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>HKD</code>
       <name>Hong Kong dollar</name>
-      <rate>7.82745</rate>
+      <rate>7.82235</rate>
       <loc>Hong Kong</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>HUF</code>
       <name>Hungarian forint</name>
-      <rate>287.44</rate>
+      <rate>283.891093</rate>
       <loc>Hungary</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>INR</code>
       <name>Indian rupee</name>
-      <rate>70.526224</rate>
+      <rate>69.87588</rate>
       <loc>India</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>JPY</code>
       <name>Japanese yen</name>
-      <rate>113.76257143</rate>
+      <rate>113.343875</rate>
       <loc>Japan</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>MXN</code>
       <name>Mexican peso</name>
-      <rate>20.47964</rate>
+      <rate>20.2075</rate>
       <loc>Mexico</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>MYR</code>
       <name>Malaysian ringgit</name>
-      <rate>4.199565</rate>
+      <rate>4.18822</rate>
       <loc>Malaysia</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>NOK</code>
       <name>Norwegian krone</name>
-      <rate>8.60668</rate>
+      <rate>8.561308</rate>
       <loc>Bouvet Island,Norway,Svalbard and Jan Mayen</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>NZD</code>
       <name>New Zealand dollar</name>
-      <rate>1.471692</rate>
+      <rate>1.455415</rate>
       <loc>Cook Islands,New Zealand,Niue,Pitcairn,Tokelau</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>PHP</code>
       <name>Philippine peso</name>
-      <rate>52.603</rate>
+      <rate>52.4003</rate>
       <loc>Philippines</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>RUB</code>
       <name>Russian ruble</name>
-      <rate>67.3979</rate>
+      <rate>66.675</rate>
       <loc>Russian Federation</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>SEK</code>
       <name>Swedish krona</name>
-      <rate>9.096322</rate>
+      <rate>9.050331</rate>
       <loc>Sweden</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>SGD</code>
       <name>Singapore dollar</name>
-      <rate>1.377563</rate>
+      <rate>1.370977</rate>
       <loc>Singapore, Brunei</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>THB</code>
       <name>Thai baht</name>
-      <rate>33.01375</rate>
+      <rate>32.941</rate>
       <loc>Thailand</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>TRY</code>
       <name>Turkish lira</name>
-      <rate>5.257901</rate>
+      <rate>5.17266</rate>
       <loc>Turkey</loc>
       <inactive>FALSE</inactive>
     </cur>
     <cur>
       <code>ZAR</code>
       <name>South African rand</name>
-      <rate>13.974887</rate>
+      <rate>13.676815</rate>
       <loc>South Africa</loc>
       <inactive>FALSE</inactive>
     </cur>
